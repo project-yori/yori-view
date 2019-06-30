@@ -9,7 +9,7 @@ export default function getDummyPhoto(photoName) {
         "photo_folder": "summer concert",
         "photo_tag": []
       }
-     
+
       var dummyPhoto2 =  {
         "photo_group": "乃木坂46",
         "photo_member": "樋口日奈",
@@ -19,7 +19,7 @@ export default function getDummyPhoto(photoName) {
         "photo_folder": "summer concert",
         "photo_tag": []
       }
-    
+
       var dummyPhoto3 =  {
         "photo_group": "乃木坂46",
         "photo_member": "樋口日奈",
@@ -39,7 +39,7 @@ export default function getDummyPhoto(photoName) {
         "photo_folder": "けやき",
         "photo_tag": []
       }
-      
+
       var dummyPhoto5 =  {
         "photo_group": "欅坂46",
         "photo_member": "守屋茜",
@@ -90,12 +90,22 @@ export default function getDummyPhoto(photoName) {
         "photo_tag": []
       }
 
-      var dummyPhoto10 =  {
+      var dummyPhoto10 = {
         "photo_group": "乃木坂46",
         "photo_member": "筒井あやめ",
         "photo_costume": "日常",
         "photo_type": "ヨリ",
         "photo_number": 3,
+        "photo_folder": "乃木坂",
+        "photo_tag": []
+      }
+
+      var dummyPhoto11 = {
+        "photo_group": "乃木坂46",
+        "photo_member": "吉田綾乃クリスティー",
+        "photo_costume": "日常",
+        "photo_type": "ヨリ",
+        "photo_number": 2000,
         "photo_folder": "乃木坂",
         "photo_tag": []
       }
@@ -110,6 +120,7 @@ export default function getDummyPhoto(photoName) {
     localStorage.setItem("dummyPhoto8", JSON.stringify(dummyPhoto8));
     localStorage.setItem("dummyPhoto9", JSON.stringify(dummyPhoto9));
     localStorage.setItem("dummyPhoto10", JSON.stringify(dummyPhoto10));
+    localStorage.setItem("dummyPhoto11", JSON.stringify(dummyPhoto11));
 
     const photoData = localStorage.getItem(photoName);
     return JSON.parse(photoData);
