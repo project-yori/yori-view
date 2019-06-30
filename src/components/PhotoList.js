@@ -37,7 +37,7 @@ export default class PhotoList extends Component {
             </div>
             <div className='photo-data-number'>
               <h3>{photo.photo_number}</h3>
-            </div>            
+            </div>          
           </div>
         </div>
       )

@@ -1,6 +1,5 @@
 
 export default function getDummyPhoto(photoName) {
-    
     var dummyPhoto1 =  {
         "photo_group": "乃木坂46",
         "photo_member": "樋口日奈",
