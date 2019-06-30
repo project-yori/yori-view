@@ -7,6 +7,15 @@ footer{
     & button{
       width: 100%;
       height: 100%;
+      background-color: #fff;
+      border: 1px solid #000;
+      
+      &:focus{
+        outline: none;
+      }    
+      &:active{
+        background-color: #aaa;
+      }
     }
   }
 }
