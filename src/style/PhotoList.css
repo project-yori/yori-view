@@ -5,15 +5,14 @@
   & .photo-list{
     height: 100%;
     background-color: #5fb955;
-
     & .photo-wrapper{
       display: grid;
       grid-template-columns: 80px auto;
       width: 100%;
       height: 80px;
-      border: solid 0.5px #000;
+      border: solid 0.5px #ddd;
       /* margin: 0.5px 0; */
-      background-color: #aaa;  
+      background-color: #fff;  
       
       & .photo-avatar{
         background-color: #fff;

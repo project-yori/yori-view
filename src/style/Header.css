@@ -2,7 +2,7 @@ header{
   display: grid;
   grid-template-columns: 50px auto 50px;
   height: 50px;
-  background-color: #aaa;
+  background-color: #fff;
 
   & .header-wrapper{
     display: flex;
