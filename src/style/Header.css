@@ -1,0 +1,24 @@
+header{
+  display: grid;
+  grid-template-columns: 50px auto 50px;
+  height: 50px;
+  background-color: #aaa;
+
+  & .header-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & h2{
+      margin: auto;
+    }
+  }
+
+  & .button-wrapper{
+    height: 100%;
+    width: 100%;
+    & button{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

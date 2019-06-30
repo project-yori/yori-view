@@ -1,0 +1,9 @@
+.photo-list-view{
+  display: grid;
+  grid-template-rows: 50px auto 50px;
+  height: 100vh;  
+  & .photo-list{
+    height: 100%;
+    background-color: #5fb955;
+  }
+}

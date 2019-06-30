@@ -1,0 +1,12 @@
+footer{
+  display: grid;
+  grid-template-columns: 33% auto 33%;
+  height: 50px;
+  & .button-wrapper{
+    display: inline-block;
+    & button{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
