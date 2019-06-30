@@ -1,8 +1,12 @@
 .photo-list-view{
   display: grid;
-  grid-template-rows: 50px auto 50px;
-  height: 100vh;  
+  grid-template-rows: 50px auto 50px;  
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;  
+  position: relative;
   & .photo-list{
+    margin: 50px 0;
     height: 100%;
     background-color: #5fb955;
     & .photo-wrapper{
@@ -11,27 +15,54 @@
       width: 100%;
       height: 80px;
       border: solid 0.5px #ddd;
-      /* margin: 0.5px 0; */
       background-color: #fff;  
+      &:last-child{
+        margin-bottom: 50px;
+      }
       
       & .photo-avatar{
-        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 1.8em;       
+        background-color: #eee;
+        /* border: 1px solid #000; */
+        border-radius: 50%;
+        width: 80%;
+        height: 80%;
+        margin: auto;
       }
 
       & .photo-data{
         display: grid;
-        grid-template-columns: 50% 25% 25%;
+        grid-template-columns: 80% 20%;
         text-align: left;
         padding-left: 0.5em;
         & h2, h3{
+          font-weight: 400;
           margin: 0;
         }
         & .photo-data-name{
-          & h2{
-            font-size: 1.5em;
+          width: 100%;
+          overflow: hidden;
+          & .name, & .type{
+            margin: 10px 0;
+            max-width: 150px;
+            display: inline-block;
+            font-size: 1.3em;
           }
-          & h3{
-            font-size: 0.9em;
+          & .name{
+            font-weight: 700;
+          }
+          & .type{
+            margin-left: 15px;
+            /* color: #888; */
+            background-color: #eee;
+            font-size: 1.1em;
+            padding: 0 10px;
+          }
+          & .costume{
+            font-size: 1em;
           }
         }
 
@@ -39,10 +70,10 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          font-size: 1.3em;
         }
         & .photo-data-number{
           & h3{
+            font-size: 1.3em;
             margin-left: auto;
             margin-right: 20px;
           }

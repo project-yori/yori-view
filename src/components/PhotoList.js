@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Header from './Header';
 import Footer from './Footer';
+import Create from './Create';
 
 import getDummyPhoto from '../logic/getPhoto';
 
@@ -28,11 +29,9 @@ export default class PhotoList extends Component {
           <div className='photo-avatar'>{photo.photo_member[0]}</div>
           <div className='photo-data'>
             <div className='photo-data-name'>
-            <h2>{photo.photo_member.toUpperCase()}</h2>
-            <h3>{photo.photo_costume}</h3>
-            </div>
-            <div className='photo-data-type'>
-              <h3>{photo.photo_type}</h3>
+            <h2 className='name'>{photo.photo_member}</h2>
+            <h2 className='type'>{photo.photo_type}</h2>
+            <h3 className='costume'>{photo.photo_costume}</h3>
             </div>
             <div className='photo-data-number'>
               <h3>{photo.photo_number}</h3>
@@ -49,8 +48,9 @@ export default class PhotoList extends Component {
       <div className='photo-list-view'>
         <Header />
         <div className='photo-list'>
-          {this.renderPhotoList()}
+          {this.renderPhotoList()}          
         </div>
+        <Create />
         <Footer />
       </div>
     )

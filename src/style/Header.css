@@ -1,9 +1,13 @@
 header{
   display: grid;
   grid-template-columns: 50px auto 50px;
+  position: fixed;
   height: 50px;
+  width: 100%;
+  top: 0;
+  border-bottom: solid 1px #ddd;
   background-color: #fff;
-
+  z-index: 1;
   & .header-wrapper{
     display: flex;
     flex-direction: column;
