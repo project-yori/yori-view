@@ -1,0 +1,45 @@
+.photo-list-view{
+  display: grid;
+  grid-template-rows: 50px auto 50px;
+  height: 100vh;  
+  & .photo-list{
+    height: 100%;
+    background-color: #5fb955;
+
+    & .photo-wrapper{
+      display: grid;
+      grid-template-columns: 80px auto;
+      width: 100%;
+      height: 80px;
+      border: solid 0.5px #000;
+      /* margin: 0.5px 0; */
+      background-color: #aaa;  
+      
+      & .photo-avatar{
+        background-color: #fff;
+      }
+
+      & .photo-data{
+        display: grid;
+        grid-template-columns: 50% 25% 25%;
+        text-align: left;
+        padding-left: 0.5em;
+        & h2, h3{
+          margin: 0;
+        }
+        & .photo-data-name{
+          & h2{
+            font-size: 2em;
+          }
+        }
+
+        & .photo-data-type, & .photo-data-number{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          font-size: 2em;
+        }
+      }
+    }
+  }
+}

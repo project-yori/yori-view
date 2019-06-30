@@ -1,0 +1,38 @@
+.top{
+  display: grid;
+  grid-template-rows: 50% 40% 10%;
+  height: 100%;
+  background-color: #5fb955;
+
+  & h1{
+    margin: auto;
+    font-size: 5em;
+  }
+
+  & .buttons{
+    & .button-wrapper{
+      margin: 1em auto;
+      width: 40%;     
+      & button{
+        width: 100%;
+        font-size: 1.8em;
+
+      }
+      &:first-child{
+        margin-top: 0;
+      }
+    }
+  }
+
+  
+
+  & footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & h6{
+      font-size: 1em;
+      font-weight: 400;
+    }
+  }
+}
