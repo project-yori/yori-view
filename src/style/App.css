@@ -4,6 +4,6 @@ body, html{
 
 }
 .App {
-  height: 100vh;
+  max-height: 100vh;
   text-align: center;
 }
