@@ -23,7 +23,6 @@ export default class PhotoList extends Component {
   }
   renderPhotoList = () => {
     const node = this.state.photoList.map((photo, i) => {
-      console.log(photo);      
       return (
         <div key={`photo-${i}`} className='photo-wrapper'>        
           <div className='photo-avatar'>{photo.photo_member[0]}</div>
@@ -45,8 +44,7 @@ export default class PhotoList extends Component {
     return node;
   }
   
-  render() {
-    
+  render() {    
     return (
       <div className='photo-list-view'>
         <Header />

@@ -6,7 +6,7 @@ var dummyPhoto1 =  {
     "photo_member": "樋口日奈",
     "photo_costume": "2019 summer concert 1",
     "photo_type": "yori",
-    "photo_number": 1,
+    "photo_number": 2,
     "photo_folder": "summer concert",
     "photo_tag": []
   }
@@ -26,7 +26,7 @@ var dummyPhoto1 =  {
     "photo_member": "樋口日奈",
     "photo_costume": "2019 summer concert 1",
     "photo_type": "hiki",
-    "photo_number": 1,
+    "photo_number": 15,
     "photo_folder": "summer concert",
     "photo_tag": []
   }

@@ -1,8 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Top from './Top';
-import Create from './Create';
 import PhotoList from './PhotoList';
 import '../style/App.css';
 
