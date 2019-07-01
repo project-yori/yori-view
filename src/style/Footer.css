@@ -20,6 +20,11 @@ footer{
       &:active{
         background-color: #aaa;
       }
+      & svg{
+        display: block;
+        margin: 0 auto;
+        margin-top: 5px;
+      }
     }
   }
 }
