@@ -1,0 +1,29 @@
+.create{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  bottom: 60px;
+  right: 40px;
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+  z-index: 1;
+  color: #eee;
+  font-size: 2em;
+  
+  & svg{
+    margin: auto;
+    background-color: #333;
+    color: #eee;
+    border-radius: 50%;
+    border: none;
+    height: 100%;
+    width: 100%;
+    box-shadow: 1px 3px 3px 1px #8888;
+
+    &:hover{
+      background-color: #888;
+    }
+  }
+}

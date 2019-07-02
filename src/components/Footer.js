@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Face, CameraFront, Search } from '@material-ui/icons';
 
 import '../style/Footer.css';
 
@@ -7,13 +8,15 @@ export default class Footer extends Component {
     return (
       <footer>
         <div className='button-wrapper'>
-          <button className='member'>メンバー</button>
+          <button className='member'>
+            <Face />
+            メンバー</button>
         </div>
         <div className='button-wrapper'>
-          <button className='theme'>テーマ</button>
+          <button className='theme'><CameraFront />テーマ</button>
         </div>
         <div className='button-wrapper'>
-          <button className='search'>検索</button>
+          <button className='search'><Search />検索</button>
         </div>
       </footer>
     )

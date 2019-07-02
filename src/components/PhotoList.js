@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Header from './Header';
 import Footer from './Footer';
-import Create from './Create';
+import CreateButton from './CreateButton';
 
 import getDummyPhoto from '../logic/getPhoto';
 
@@ -60,7 +60,7 @@ export default class PhotoList extends Component {
         <div className='photo-list'>
           {this.renderPhotoList()}
         </div>
-        <Create />
+        <CreateButton />
         <Footer />
       </div>
     )
