@@ -6,8 +6,10 @@ footer{
   position: fixed;
   bottom: 0;
   z-index: 1;
+  
   & .button-wrapper{
-    display: inline-block;    
+    display: inline-block;  
+
     & button{
       width: 100%;
       height: 100%;
@@ -18,13 +20,14 @@ footer{
       &:focus{
         outline: none;
       }    
+
       &:active{
         background-color: #aaa;
       }
+
       & svg{
         display: block;
-        margin: 0 auto;
-        margin-top: 5px;
+        margin: 5px auto 0 auto;
       }
     }
   }
