@@ -20,8 +20,6 @@ header{
   }
 
   & .button-wrapper{
-    height: 100%;
-    width: 100%;
 
     & button{
       color: #000;
@@ -30,6 +28,11 @@ header{
 
       &:active{
         color: #aaa;
+      }
+
+      & svg{
+        height: 100%;
+        width: 100%;
       }
     }
   }
