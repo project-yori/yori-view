@@ -13,7 +13,7 @@ export default class Footer extends Component {
             メンバー</button>
         </div>
         <div className='button-wrapper'>
-          <button className='theme'><CameraFront />テーマ</button>
+          <button className='costume'><CameraFront />テーマ</button>
         </div>
         <div className='button-wrapper'>
           <button className='search'><Search />検索</button>
