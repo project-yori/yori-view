@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render meta of photo of extra long member name 1`] = `
+<div
+  className="photo-item-wrapper"
+>
+  <div
+    className="photo-image"
+  >
+    吉
+  </div>
+  <div
+    className="photo-data"
+  >
+    <div
+      className="photo-data-meta"
+    >
+      <h2
+        className="photo-name extra-small-text"
+      >
+        吉田綾乃クリスティー
+      </h2>
+      <h2
+        className="photo-type"
+      >
+        ヨリ
+      </h2>
+      <h3
+        className="photo-costume"
+      >
+        日常
+      </h3>
+    </div>
+    <div
+      className="photo-data-number"
+    >
+      <h3>
+        20
+      </h3>
+    </div>
+  </div>
+</div>
+`;

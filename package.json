@@ -134,5 +134,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.8.6"
   }
 }
