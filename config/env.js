@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const os = require('os');
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -14,6 +15,12 @@ if (!NODE_ENV) {
   );
 }
 
+const getLocalAddress = () => {
+  // XXX: Assume all developers use Mac OSX and their
+  // en0 is accessible from other devices.
+  return os.networkInterfaces()['en0'][0].address;
+};
+
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 var dotenvFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`,
@@ -22,7 +29,7 @@ var dotenvFiles = [
   // since normally you expect tests to produce the same
   // results for everyone
   NODE_ENV !== 'test' && `${paths.dotenv}.local`,
-  paths.dotenv,
+  paths.dotenv
 ].filter(Boolean);
 
 // Load environment variables from .env* files. Suppress warnings using silent
@@ -34,7 +41,7 @@ dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
     require('dotenv-expand')(
       require('dotenv').config({
-        path: dotenvFile,
+        path: dotenvFile
       })
     );
   }
@@ -77,6 +84,7 @@ function getClientEnvironment(publicUrl) {
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
+        HOST: process.env.NODE_ENV === 'development' ? getLocalAddress() : ''
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin
@@ -84,7 +92,7 @@ function getClientEnvironment(publicUrl) {
     'process.env': Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
-    }, {}),
+    }, {})
   };
 
   return { raw, stringified };
