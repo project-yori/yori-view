@@ -1,8 +1,11 @@
 import 'whatwg-fetch';
 import { END_POINTS, ACTION_TYPES } from './types';
+import { isProduction } from './utils';
 
 // TODO: Make this configurable and automatically switch between local and production environment
-const API_HOST = 'http://localhost:5000';
+const API_HOST = isProduction()
+  ? 'https://yori-server.appspot.com'
+  : `http://${process.env.HOST || 'localhost'}:5000`;
 
 export const getPhotos = () => dispatch => {
   const headers = new Headers();
