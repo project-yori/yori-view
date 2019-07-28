@@ -13,7 +13,6 @@ class Create_Group extends Component {
     };
   }
 
-  // Todo: all state handler in actions
   selectGroup = (group) => {
     this.setState({groupSelected: group})
   }
@@ -32,7 +31,6 @@ class Create_Group extends Component {
       '2019.July-Ⅴ（ギンガムチェック）（3種類）',
     ];
 
-    // Todo: value in options
     const nodes = dummyData.map((item, i) => 
       <option key={`create-cos-select-${i}`} value={i}>
         {item}
