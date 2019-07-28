@@ -1,0 +1,76 @@
+.create-group-container{
+  position: relative;
+  top: 50px;
+  height: calc(100vh - 50px);
+  & ul{
+    padding: 0;
+    margin: 0;
+
+    & li.select-button{
+      display: inline-block;
+      color: #999;
+      
+      & button{
+        margin: 0 10px;
+        border-radius: 50%;
+        border: solid 1px #999;
+        height: 60px;
+        width: 60px;
+        background-color: #fff;
+        font-size: 1.5em;
+        color: #999;
+
+        &:focus{
+          outline: none;
+        }
+      }
+
+      &.active{
+        color: #000;
+
+        & button{
+          color: #fff;
+          font-weight: 700;
+          border-color: #000;
+        }
+        &#nogizaka{
+          & button{
+            background-color: #7d2982;
+          }
+        }
+  
+        &#keyakizaka{
+          & button{
+            background-color: #5fb955;
+          }
+        }
+        
+        &#hinatazaka{
+          & button{
+            background-color: #7cc8e9;
+          }
+        }
+      }
+
+
+      & h6{        
+        margin: 10px 0;
+      }
+    }
+  }
+
+  & .group, & .costume{
+    margin: 20px 0;
+    /* height: 30vh; */
+  }
+
+  & select{
+    border: solid 1px #000;
+    width: 80%;
+    font-size: 1em;
+
+    &:focus{
+      outline: none;
+    }
+  }
+}

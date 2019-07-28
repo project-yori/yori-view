@@ -11,7 +11,7 @@ export default class Header extends Component {
           <button><FolderOpen /></button>
         </div>
         <div className='header-wrapper'>
-          <h2>ALBUM</h2>
+          <h2>{this.props.children}</h2>
         </div>
         <div className='button-wrapper'>
           <button><Settings /></button>

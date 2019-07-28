@@ -20,7 +20,7 @@ export default class PhotoListView extends Component {
   render() {
     return (
       <div className='photo-list-view'>
-        <Header />
+        <Header>ALBUM_NAME</Header>
         <PhotoList />
         <CreateButton showActionSheet={this.showActionSheet}/>
         <div 
