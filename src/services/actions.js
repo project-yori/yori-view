@@ -36,3 +36,30 @@ export const getPhotos = () => dispatch => {
       });
   });
 };
+
+export const createPhotosGroup = (group) => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.CREATE_PHOTO_GROUP,
+    data: group
+  });
+};
+
+export const createPhotosCostume = (costume) => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.CREATE_PHOTO_COSTUME,
+    data: costume
+  })
+};
+
+export const createPhotosMember =  (members) => dispatch => {
+  const memberData = members.map((member) => {
+    return {
+
+    }
+  });
+
+  dispatch({
+    type: ACTION_TYPES.CREATE_PHOTO_MEMBER,
+    memberData
+  });
+};

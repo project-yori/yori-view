@@ -1,11 +1,41 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export default class Create_Member extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
-}
+import { STORE_TYPES } from '../services/types';
+
+import '../style/Create_Member.css';
+
+const mapDispatchToProps = {
+
+};
+
+const mapStateToProps = state => {
+  return {
+    [STORE_TYPES.STATE.CREATE.GROUP]: state.create.group,
+    [STORE_TYPES.STATE.CREATE.COSTUME]: state.create.costume,
+  };
+};
+
+const actived = false;
+
+const Create_Member = ({ costume }) => (
+      <div className='create-member-container'>
+        <h3>{costume || 'PHOTO_COSTUME'}</h3>
+        <div className='main-button-container'>
+          <Link to='/create/group'>
+            <button className='main-button'>もどる</button>
+          </Link>
+          <Link to='/create/type'>
+            <button 
+              disabled={!actived} 
+              className={actived ? 'main-button active' : 'main-button'}
+            >次へ</button>
+          </Link>
+        </div>
+      </div>    
+  // }
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Create_Member);
+

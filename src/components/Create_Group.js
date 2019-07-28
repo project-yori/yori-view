@@ -2,7 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { createPhotosGroup, createPhotosCostume } from '../services/actions';
+
 import '../style/Create_Group.css';
+
+const mapDispatchToProps = {
+  createPhotosGroup,
+  createPhotosCostume,
+};
 
 class Create_Group extends Component {
   constructor(props){
@@ -15,11 +22,13 @@ class Create_Group extends Component {
 
   // Todo: all state handler in actions
   selectGroup = (group) => {
-    this.setState({groupSelected: group})
+    this.setState({groupSelected: group});
+    this.props.createPhotosGroup(group);
   }
 
   handleSelectCos = (event) => {
-    this.setState({cosSelected: event.target.value})
+    this.setState({cosSelected: event.target.value});
+    this.props.createPhotosCostume(event.target.value);
   }
   
 
@@ -34,7 +43,7 @@ class Create_Group extends Component {
 
     // Todo: value in options
     const nodes = dummyData.map((item, i) => 
-      <option key={`create-cos-select-${i}`} value={i}>
+      <option key={`create-cos-select-${i}`} value={item}>
         {item}
       </option>
     );
@@ -99,4 +108,4 @@ class Create_Group extends Component {
   }
 }
 
-export default connect(null, null)(Create_Group);
+export default connect(null, mapDispatchToProps)(Create_Group);

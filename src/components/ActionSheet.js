@@ -11,10 +11,10 @@ export default class ActionSheet extends Component {
         >
           <button>アルバム作成</button>
           <button>写真登録</button>
-          <button>
-            <Link to='/create/group'>まとめ登録</Link>
-          </button>
-          <button
+          <Link to='/create/group'>
+            <button>まとめて登録</button>
+          </Link>
+          <button className='cancel'
             onClick={() => this.props.showActionSheet()}
           >取消</button>
         </div>

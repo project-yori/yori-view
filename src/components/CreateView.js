@@ -10,7 +10,7 @@ export default class CreateView extends Component {
   render() {
     return (
       <div className='create-view'>
-        <Header>まとめ登録</Header>
+        <Header>まとめて登録</Header>
         <Route path='/create/group' component={Create_Group} />
         <Route path='/create/member' component={Create_Member} />
         <Route path='/create/type' component={Create_Type} />

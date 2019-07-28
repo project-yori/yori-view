@@ -1,0 +1,9 @@
+.create-member-container{
+  height: calc(100vh - 50px - 55px);
+  position: relative;
+  top: 50px;
+
+  & h2{
+    margin: 10px;
+  }
+}
