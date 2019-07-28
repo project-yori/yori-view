@@ -5,10 +5,11 @@
   overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
+  z-index: 0;
 
   & .photo-list-wrapper{
     margin: 50px 0;
-    height: 100%;
-    background-color: #5fb955;    
+    height: calc(100vh - 50*2px);
+    background-color: #fff;
   }
 }

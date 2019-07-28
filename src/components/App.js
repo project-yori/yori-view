@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { getPhotos } from '../services/actions';
 import { STORE_TYPES } from '../services/types';
 
-import PhotoList from './PhotoList';
+import PhotoListView from './PhotoListView';
 import '../style/App.css';
 
 class App extends React.Component {
@@ -28,7 +28,7 @@ class App extends React.Component {
       <Router>
         <div className='App'>
           <Route path='/'>
-            <PhotoList />
+            <PhotoListView />
           </Route>
         </div>
       </Router>

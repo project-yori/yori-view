@@ -6,7 +6,10 @@ import '../style/CreateButton.css';
 export default class CreateButton extends Component {
   render() {
     return (
-      <div className='create'>
+      <div         
+        className='create'
+        onClick={() => this.props.showActionSheet()}
+      >
         <Add />
       </div>
     )
