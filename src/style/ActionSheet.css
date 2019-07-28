@@ -1,7 +1,7 @@
-.dimmed{
+.dimmed-view{
   display: none;
 }
-.dimmed.show{
+.dimmed-view.show{
   display: block;
   position: relative;
   top: -50px;
@@ -10,7 +10,7 @@
 }
 
 .action-sheet{
-  position: absolute;
+  position: fixed;
   bottom: -250px;
   display: flex;
   flex-direction: column;
