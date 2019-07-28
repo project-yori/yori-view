@@ -7,6 +7,7 @@ import { getPhotos } from '../services/actions';
 import { STORE_TYPES } from '../services/types';
 
 import PhotoListView from './PhotoListView';
+import CreateView from './CreateView';
 import '../style/App.css';
 
 class App extends React.Component {
@@ -27,9 +28,8 @@ class App extends React.Component {
     return (
       <Router>
         <div className='App'>
-          <Route path='/'>
-            <PhotoListView />
-          </Route>
+          <Route exact path='/' component={PhotoListView} />
+          <Route path='/create' component={CreateView} />
         </div>
       </Router>
     );
