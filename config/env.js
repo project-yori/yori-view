@@ -16,9 +16,16 @@ if (!NODE_ENV) {
 }
 
 const getLocalAddress = () => {
-  // XXX: Assume all developers use Mac OSX and their
-  // en0 is accessible from other devices.
-  return os.networkInterfaces()['en0'][0].address;
+  // XXX: Find the first external ipv4 address
+  const interfaces = os.networkInterfaces();
+  let externalInterface;
+  Object.keys(interfaces).find(key => {
+    externalInterface = interfaces[key].find(item => {
+      return item.family === 'IPv4' && item.internal === false;
+    });
+    return externalInterface && externalInterface.address;
+  });
+  return (externalInterface && externalInterface.address) || '';
 };
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
