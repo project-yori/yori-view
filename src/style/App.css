@@ -29,12 +29,18 @@ body, html{
   height: 45px;
 
   &:active{
-    background-color: #eee;
+    background-color: #fff;
   }
 
-  &.active{
+  &.next{
     background-color: #147efb;
     color: #fff;
+  }
+
+  &.disabled{
+    border-color: #999;
+    color: #999;  
+    
   }
 
   &:focus{

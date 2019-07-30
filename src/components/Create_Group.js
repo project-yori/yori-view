@@ -57,7 +57,7 @@ class Create_Group extends Component {
   };
   
   render() {
-    const actived = this.state.cosSelected!==undefined && this.state.groupSelected!==undefined;
+    const disabled = this.state.cosSelected===undefined || this.state.groupSelected===undefined;
     return (
       <div className='create-group-container'>
         <div className='create-group-opt-container'>
@@ -98,8 +98,8 @@ class Create_Group extends Component {
           </Link>
           <Link to='/create/member'>
             <button 
-              disabled={!actived} 
-              className={actived ? 'main-button active' : 'main-button'}
+              disabled={disabled} 
+              className={disabled ? 'main-button disabled' : 'main-button next'}
             >次へ</button>
           </Link>
         </div>          

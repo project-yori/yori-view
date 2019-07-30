@@ -17,7 +17,7 @@ const mapStateToProps = state => {
   };
 };
 
-const actived = false;
+const disabled = true;
 
 const Create_Member = ({ costume }) => (
       <div className='create-member-container'>
@@ -28,8 +28,8 @@ const Create_Member = ({ costume }) => (
           </Link>
           <Link to='/create/type'>
             <button 
-              disabled={!actived} 
-              className={actived ? 'main-button active' : 'main-button'}
+              disabled={disabled} 
+              className={disabled ? 'main-button disabled' : 'main-button next'}
             >次へ</button>
           </Link>
         </div>

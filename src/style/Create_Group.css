@@ -11,6 +11,7 @@
       
       & button{
         margin: 0 10px;
+        padding: 0;
         height: 60px;
         width: 60px;
         border-radius: 50%;
@@ -22,6 +23,11 @@
         &:focus{
           outline: none;
         }
+      }
+
+      & h6{        
+        font-weight: 400;
+        margin: 5px 0;
       }
 
       &.active{
@@ -55,11 +61,6 @@
         }
       }
 
-
-      & h6{        
-        font-weight: 400;
-        margin: 5px 0;
-      }
     }
   }
 

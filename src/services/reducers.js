@@ -2,7 +2,9 @@ import { combineReducers } from 'redux';
 import { ACTION_TYPES, STORE_TYPES } from './types';
 
 const initialState = {
-  [STORE_TYPES.STATE.TOP.PHOTOS]: [],
+  [STORE_TYPES.STATE.TOP.META]: {
+    [STORE_TYPES.STATE.TOP.PHOTOS]: [],
+  },
   [STORE_TYPES.STATE.CREATE.META]: {
     [STORE_TYPES.STATE.CREATE.GROUP]: null,
     [STORE_TYPES.STATE.CREATE.COSTUME]: null,
@@ -17,7 +19,7 @@ const setTopData = function(state, action) {
   };
 };
 
-const top = function(state = initialState[STORE_TYPES.STATE.TOP.PHOTOS], action) {
+const top = function(state = initialState.top, action) {
   switch (action.type) {
     case ACTION_TYPES.GET_PHOTOS:
       return setTopData(state, action);
@@ -26,12 +28,18 @@ const top = function(state = initialState[STORE_TYPES.STATE.TOP.PHOTOS], action)
   }
 };
 
-const create = function(state = initialState[STORE_TYPES.STATE.CREATE.META], action) {
+const create = function(state = initialState.create, action) {
   switch (action.type) {
     case ACTION_TYPES.CREATE_PHOTO_GROUP:
-      return {...state, [STORE_TYPES.STATE.CREATE.GROUP]: action.data };
+      return {
+        ...state,
+        [STORE_TYPES.STATE.CREATE.GROUP]: action.data 
+        };
     case ACTION_TYPES.CREATE_PHOTO_COSTUME:
-      return {...state, [STORE_TYPES.STATE.CREATE.COSTUME]: action.data};
+      return {
+        ...state,
+        [STORE_TYPES.STATE.CREATE.COSTUME]: action.data
+      };
     default:
       return state;      
    }

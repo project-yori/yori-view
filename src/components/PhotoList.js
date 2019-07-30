@@ -6,6 +6,16 @@ import PhotoItem from './PhotoItem';
 import { STORE_TYPES } from '../services/types';
 import '../style/PhotoList.css';
 
+const mapDispatchToProps = {
+
+};
+
+const mapStateToProps = state => {
+  return {
+    [STORE_TYPES.STATE.TOP.PHOTOS]: state.top.photos
+  }
+};
+
 class PhotoList extends Component {
   constructor(props) {
     super(props);
@@ -30,8 +40,4 @@ class PhotoList extends Component {
   }
 }
 
-export default connect(state => {
-  return {
-    [STORE_TYPES.STATE.TOP.PHOTOS]: state.top[STORE_TYPES.STATE.TOP.PHOTOS]
-  };
-})(PhotoList);
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoList);

@@ -13,6 +13,7 @@ export const ACTION_TYPES = {
 export const STORE_TYPES = {
   STATE: {
     TOP: {
+      META: 'top',
       PHOTOS: 'photos'
     },
     CREATE: {

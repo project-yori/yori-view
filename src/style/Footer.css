@@ -1,6 +1,6 @@
 footer{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   position: fixed;
   height: 50px;
   width: 100%;
@@ -10,9 +10,8 @@ footer{
   background-color: #fff;
 
   & .button-wrapper{
-    display: inline-block;  
-    padding: 0 10px;
-    width: 60px;
+    display: inline-block;
+    width: calc((100vw - 20px)/3);
 
     & button{
       width: 100%;
