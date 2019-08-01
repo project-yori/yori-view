@@ -19,6 +19,7 @@
         background-color: #fff;
         font-size: 1.5em;
         color: #999;
+        -webkit-tap-highlight-color: transparent;        
 
         &:focus{
           outline: none;

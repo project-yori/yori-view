@@ -1,6 +1,7 @@
 body, html{
   font-size: 14;
   background-color: #fff;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .App {

@@ -1,111 +1,132 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { createPhotosGroup, createPhotosCostume } from '../services/actions';
+import { createPhotosGroup, createPhotosCostume } from "../services/actions";
+import { STORE_TYPES } from "../services/types";
+import { costumes } from '../constants/costumes';
 
-import '../style/Create_Group.css';
+import "../style/Create_Group.css";
+
+const mapStateToProps = state => {
+  return {
+    [STORE_TYPES.STATE.CREATE.GROUP]:
+      state[STORE_TYPES.STATE.CREATE.META][STORE_TYPES.STATE.CREATE.GROUP],
+    [STORE_TYPES.STATE.CREATE.COSTUME]:
+      state[STORE_TYPES.STATE.CREATE.META][STORE_TYPES.STATE.CREATE.COSTUME]
+  };
+};
 
 const mapDispatchToProps = {
   createPhotosGroup,
-  createPhotosCostume,
+  createPhotosCostume
 };
 
 class Create_Group extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      groupSelected: undefined,
-      cosSelected: undefined,
-    };
-  }
-
-  // Todo: all state handler in actions
-  selectGroup = (group) => {
-    this.setState({groupSelected: group});
+  handleSelectGroup = group => {
     this.props.createPhotosGroup(group);
-  }
+  };
 
-  handleSelectCos = (event) => {
-    this.setState({cosSelected: event.target.value});
+  handleSelectCos = event => {
     this.props.createPhotosCostume(event.target.value);
-  }
-  
+  };
 
   renderCosDropDown = () => {
-    const dummyData = [
-      '2019.July-Ⅱ（浴衣）（5種類）',
-      '2019.July-Ⅲ（サファリルック）（3種類）',
-      '2019.July-Ⅳ（アニマルT）（3種類）',
-      '全ツ2019福岡Tシャツ（3種類）',
-      '2019.July-Ⅴ（ギンガムチェック）（3種類）',
-    ];
 
-    // Todo: value in options
-    const nodes = dummyData.map((item, i) => 
-      <option key={`create-cos-select-${i}`} value={item}>
-        {item}
+    const nodes = costumes.map((item, i) => (
+      <option key={`create-cos-select-${i}`} value={item.cos_id}>
+        {item.cos_name}
       </option>
-    );
+    ));
 
     return (
-      <select value={this.state.cosSelected} onChange={this.handleSelectCos}>
-        <option value='' selected disabled>選択</option>
+      <select value={this.props.costume || ""} onChange={this.handleSelectCos}>
+        <option value="" selected disabled>
+          選択
+        </option>
         {nodes}
       </select>
     );
   };
-  
+
   render() {
-    const disabled = this.state.cosSelected===undefined || this.state.groupSelected===undefined;
+    const nextStepBtnDisabled =
+      this.props.group === null || this.props.costume === null;
     return (
-      <div className='create-group-container'>
-        <div className='create-group-opt-container'>
-          <div className='group'>
+      <div className="create-group-container">
+        <div className="create-group-opt-container">
+          <div className="group">
             <h2>グループ選択</h2>
             <ul>
-              <li 
-                id='nogizaka'
-                className={this.state.groupSelected==='nogizaka' ? 'select-button active' : 'select-button'}
+              <li
+                id="nogizaka"
+                className={
+                  this.props.group === "nogizaka"
+                    ? "select-button active"
+                    : "select-button"
+                }
               >
-                <button onClick={() => this.selectGroup('nogizaka')}>乃</button>
+                <button onClick={() => this.handleSelectGroup("nogizaka")}>
+                  乃
+                </button>
                 <h6>乃木坂46</h6>
               </li>
-              <li 
-                id='keyakizaka'
-                className={this.state.groupSelected==='keyakizaka' ? 'select-button active' : 'select-button'}
+              <li
+                id="keyakizaka"
+                className={
+                  this.props.group === "keyakizaka"
+                    ? "select-button active"
+                    : "select-button"
+                }
               >
-                <button onClick={() => this.selectGroup('keyakizaka')}>欅</button>
+                <button onClick={() => this.handleSelectGroup("keyakizaka")}>
+                  欅
+                </button>
                 <h6>欅坂46</h6>
               </li>
-              <li 
-                id='hinatazaka'
-                className={this.state.groupSelected==='hinatazaka' ? 'select-button active' : 'select-button'}
+              <li
+                id="hinatazaka"
+                className={
+                  this.props.group === "hinatazaka"
+                    ? "select-button active"
+                    : "select-button"
+                }
               >
-                <button onClick={() => this.selectGroup('hinatazaka')}>日</button>
+                <button onClick={() => this.handleSelectGroup("hinatazaka")}>
+                  日
+                </button>
                 <h6>日向坂46</h6>
               </li>
             </ul>
           </div>
-          <div className='costume'>
+          <div className="costume">
             <h2>衣装選択</h2>
             {this.renderCosDropDown()}
           </div>
         </div>
-        <div className='main-button-container'>
-          <Link to='/'>
-            <button className='main-button'>もどる</button>
+        <div className="main-button-container">
+          <Link to="/">
+            <button className="main-button">もどる</button>
           </Link>
-          <Link to='/create/member'>
-            <button 
-              disabled={disabled} 
-              className={disabled ? 'main-button disabled' : 'main-button next'}
-            >次へ</button>
+          <Link to="/create/member">
+            <button
+              disabled={nextStepBtnDisabled}
+              className={
+                nextStepBtnDisabled
+                  ? "main-button disabled"
+                  : "main-button next"
+              }
+            >
+              次へ
+            </button>
           </Link>
-        </div>          
+        </div>
       </div>
-    )
+    );
   }
 }
 
-export default connect(null, mapDispatchToProps)(Create_Group);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Create_Group);

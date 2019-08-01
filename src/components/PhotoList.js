@@ -12,7 +12,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
   return {
-    [STORE_TYPES.STATE.TOP.PHOTOS]: state.top.photos
+    [STORE_TYPES.STATE.TOP.PHOTOS]: state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.PHOTOS]
   }
 };
 
