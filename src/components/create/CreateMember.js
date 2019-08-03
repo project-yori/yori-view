@@ -10,9 +10,9 @@ import {
 } from "../../services/actions";
 
 import "../../style/create/CreateMember.css";
-import { costumes } from "../../constants/costumes";
 import { cos_mem_map } from "../../constants/cos_mem_map";
-import { members } from "../../constants/members";
+import { members } from "../../constants/member";
+import { photoClass } from "../../constants/photoClass";
 
 const mapDispatchToProps = {
   createPhotosCostume,
@@ -31,8 +31,8 @@ const mapStateToProps = state => {
 class CreateMember extends Component {
   renderCosTitle = () => {
     let title = "PHOTO_COSTUME";
-    costumes.forEach(cos => {
-      if (cos.cos_id === this.props.costume) title = cos.cos_name;
+    photoClass.forEach(photo => {
+      if (photo.photo_id === this.props.costume) title = photo.photo_name;
     });
     return <h3>{title}</h3>;
   };
@@ -41,16 +41,16 @@ class CreateMember extends Component {
     const liNodes = members.map(member => {
       return (
         <li
-          className={
-            this.props.member.includes(member.member_name_en)
+          className={            
+            this.props.member.find(item => {return item.photo_member===member.member_name_en})!==undefined
               ? "select-button active"
               : "select-button"
           }
         >
           <button
             onClick={() => {
-              if (this.props.member.includes(member.member_name_en))
-                this.props.createPhotosDelMember(member.member_name_en);
+              const isInstore = this.props.member.find(item => {return item.photo_member===member.member_name_en})
+              if (isInstore) this.props.createPhotosDelMember(member.member_name_en);
               else this.props.createPhotosAddMember(member.member_name_en);
             }}
           >
