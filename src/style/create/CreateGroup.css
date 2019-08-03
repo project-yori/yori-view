@@ -1,7 +1,6 @@
 .create-group-container{
   position: relative;
   top: 50px;
-  height: calc(100vh - 50px);
   & ul{
     padding: 0;
     margin: 0;
@@ -12,17 +11,24 @@
       
       & button{
         margin: 0 10px;
-        border-radius: 50%;
-        border: solid 1px #999;
+        padding: 0;
         height: 60px;
         width: 60px;
+        border-radius: 50%;
+        border: solid 1px #999;
         background-color: #fff;
         font-size: 1.5em;
         color: #999;
+        -webkit-tap-highlight-color: transparent;        
 
         &:focus{
           outline: none;
         }
+      }
+
+      & h6{        
+        font-weight: 400;
+        margin: 5px 0;
       }
 
       &.active{
@@ -50,12 +56,12 @@
             background-color: #7cc8e9;
           }
         }
+
+        & h6{
+          font-weight: 700;
+        }
       }
 
-
-      & h6{        
-        margin: 10px 0;
-      }
     }
   }
 

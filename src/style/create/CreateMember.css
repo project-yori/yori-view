@@ -1,0 +1,77 @@
+.create-member-container{
+  height: calc(100vh - 50px - 55px);
+  position: relative;
+  top: 50px;
+
+  & div.member-gen{
+    /* margin: 0 0 10px 0; */
+  }
+  
+  & h2{
+    margin: 10px;
+  }
+  & ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0 auto;
+    width: calc(80px * 3);
+
+    & li.select-button{
+      display: inline-block;
+      color: #999;
+      
+      & button{
+        margin: 0 10px;
+        padding: 0;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        border: solid 1px #999;
+        background-color: #fff;
+        font-size: 1.5em;
+        color: #999;
+
+        &:focus{
+          outline: none;
+        }
+      }
+
+      & h6{        
+        font-weight: 400;
+        margin: 5px 0;
+      }
+
+      &.active{
+        color: #000;
+
+        & button{
+          color: #fff;
+          font-weight: 700;
+          border-color: #000;
+        }
+        &#nogizaka{
+          & button{
+            background-color: #7d2982;
+          }
+        }
+  
+        &#keyakizaka{
+          & button{
+            background-color: #5fb955;
+          }
+        }
+        
+        &#hinatazaka{
+          & button{
+            background-color: #7cc8e9;
+          }
+        }
+
+        & h6{
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

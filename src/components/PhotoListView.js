@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Header from './Header';
 import PhotoList from './PhotoList';
-import CreateButton from './CreateButton';
+import CreateButton from './create/CreateButton';
 import ActionSheet from './ActionSheet';
 import Footer from './Footer';
 
