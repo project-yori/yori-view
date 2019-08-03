@@ -51,15 +51,16 @@ export const createPhotosCostume = (costume) => dispatch => {
   })
 };
 
-export const createPhotosMember =  (members) => dispatch => {
-  const memberData = members.map((member) => {
-    return {
-
-    }
-  });
-
+export const createPhotosAddMember =  (member) => dispatch => {
   dispatch({
-    type: ACTION_TYPES.CREATE_PHOTO_MEMBER,
-    memberData
+    type: ACTION_TYPES.CREATE_PHOTO_ADD_MEMBER,
+    data: member
+  });
+};
+
+export const createPhotosDelMember = (member) => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.CREATE_PHOTO_DEL_MEMBER,
+    data: member
   });
 };
