@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { createPhotosGroup, createPhotosCostume } from "../../services/actions";
 import { STORE_TYPES } from "../../services/types";
-import { costumes } from '../../constants/costumes';
+import { costumes } from "../../constants/costumes";
 
 import "../../style/create/CreateGroup.css";
 
@@ -32,7 +32,6 @@ class CreateGroup extends Component {
   };
 
   renderCosDropDown = () => {
-
     const nodes = costumes.map((item, i) => (
       <option key={`create-cos-select-${i}`} value={item.cos_id}>
         {item.cos_name}

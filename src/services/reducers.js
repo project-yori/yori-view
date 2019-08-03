@@ -9,7 +9,13 @@ const initialState = {
     [STORE_TYPES.STATE.CREATE.GROUP]: null,
     [STORE_TYPES.STATE.CREATE.COSTUME]: null,
     [STORE_TYPES.STATE.CREATE.MEMBER]: []
-  }
+  },
+  //for test
+  create: {
+    group: 'keyakizaka',
+    costume: '2019_july_2_yukata',
+    member: ['sugai_yuuka', 'hirate_yurina', 'yamasaki_ten']
+  },
 };
 
 const setTopData = function(state, action) {

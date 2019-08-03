@@ -87,8 +87,7 @@ class CreateMember extends Component {
   };
 
   render() {
-    const nextStepBtnDisabled = this.props.member.length===0;
-    // this.props.createPhotosCostume(costumes[0].cos_id);
+    const nextStepBtnDisabled = this.props.member.length === 0;
     return (
       <div className="create-member-container">
         {this.renderCosTitle()}
