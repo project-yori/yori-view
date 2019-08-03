@@ -3,7 +3,6 @@
   grid-template-rows: 50px auto 50px;
   height: 100vh;
   overflow-x: hidden;
-  /* overflow-y: scroll; */
   position: relative;
   z-index: 0;
   background-color: transparent;

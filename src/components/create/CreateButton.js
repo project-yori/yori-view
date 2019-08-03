@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Add } from '@material-ui/icons';
 
-import '../style/CreateButton.css';
+import '../../style/create/CreateButton.css';
 
 export default class CreateButton extends Component {
   render() {

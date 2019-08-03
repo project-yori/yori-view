@@ -7,7 +7,7 @@ import { getPhotos } from '../services/actions';
 import { STORE_TYPES } from '../services/types';
 
 import PhotoListView from './PhotoListView';
-import CreateView from './CreateView';
+import CreateView from './create/CreateView';
 import '../style/App.css';
 
 class App extends React.Component {

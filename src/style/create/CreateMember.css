@@ -3,12 +3,19 @@
   position: relative;
   top: 50px;
 
+  & div.member-gen{
+    /* margin: 0 0 10px 0; */
+  }
+  
   & h2{
     margin: 10px;
   }
   & ul{
+    display: flex;
+    flex-wrap: wrap;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
+    width: calc(80px * 3);
 
     & li.select-button{
       display: inline-block;

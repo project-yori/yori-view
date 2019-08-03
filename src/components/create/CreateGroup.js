@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { createPhotosGroup, createPhotosCostume } from "../services/actions";
-import { STORE_TYPES } from "../services/types";
-import { costumes } from '../constants/costumes';
+import { createPhotosGroup, createPhotosCostume } from "../../services/actions";
+import { STORE_TYPES } from "../../services/types";
+import { costumes } from '../../constants/costumes';
 
-import "../style/Create_Group.css";
+import "../../style/create/CreateGroup.css";
 
 const mapStateToProps = state => {
   return {

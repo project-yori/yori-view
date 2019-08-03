@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { STORE_TYPES } from "../services/types";
+import { STORE_TYPES } from "../../services/types";
 
-import "../style/Create_Member.css";
-import { costumes } from "../constants/costumes";
-import { cos_mem_map } from "../constants/cos_mem_map";
-import { members } from "../constants/members";
+import "../../style/create/CreateMember.css";
+import { costumes } from "../../constants/costumes";
+import { cos_mem_map } from "../../constants/cos_mem_map";
+import { members } from "../../constants/members";
 
-const createPhotosCostume = () => dispatch => {
+const createPhotosCostume = (costume) => dispatch => {
   dispatch({
     type: "CREATE_PHOTO_COSTUME",
-    data: "2019_july_3_safari"
+    data: costume
   });
 };
 
@@ -42,15 +42,8 @@ class Create_Member extends Component {
     return <h3>{title}</h3>;
   };
 
-  renderMembers = () => {
-    let memberInThisCos = [];
-    members.keyakizaka.forEach(member => {
-      if (cos_mem_map[member.member_name_en].includes(this.props.costume)) {
-        memberInThisCos.push(member);
-      }
-    });
-
-    const nodes = memberInThisCos.map(member => {
+  renderMemUl = members => {
+    const liNodes = members.map(member => {
       return (
         <li className="select-button">
           <button>{member.member_name[0]}</button>
@@ -58,16 +51,41 @@ class Create_Member extends Component {
         </li>
       );
     });
+    return <ul>{liNodes}</ul>;
+  };
 
-    return <ul>{nodes}</ul>;
+  renderGenDiv = () => {
+    let memberInThisCos = {};
+    members.keyakizaka.forEach(member => {
+      if (cos_mem_map[member.member_name_en].includes(this.props.costume)) {
+        console.log(member);
+        const thisGen = `gen${member.member_gen}`;
+        if (memberInThisCos.hasOwnProperty(thisGen))
+          memberInThisCos[thisGen].push(member);
+        else memberInThisCos[thisGen] = [member];
+      }
+    });
+
+    const genDivs = Object.entries(memberInThisCos).map(([gen, members]) => {
+      console.log(gen, members);      
+      return (
+        <div 
+          className='member-gen'
+        >
+          <h3></h3>
+          {this.renderMemUl(members)}
+        </div>
+      );
+    });
+    return <div>{genDivs}</div>;
   };
 
   render() {
-    // this.props.createPhotosCostume();
+    this.props.createPhotosCostume(costumes[0].cos_id);
     return (
       <div className="create-member-container">
         {this.renderCosTitle()}
-        {this.renderMembers()}
+        {this.renderGenDiv()}
         <div className="main-button-container">
           <Link to="/create/group">
             <button className="main-button">もどる</button>
