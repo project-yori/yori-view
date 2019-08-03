@@ -3,37 +3,32 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { STORE_TYPES } from "../../services/types";
+import {
+  createPhotosCostume,
+  createPhotosAddMember,
+  createPhotosDelMember
+} from "../../services/actions";
 
 import "../../style/create/CreateMember.css";
 import { costumes } from "../../constants/costumes";
 import { cos_mem_map } from "../../constants/cos_mem_map";
 import { members } from "../../constants/members";
 
-const createPhotosCostume = (costume) => dispatch => {
-  dispatch({
-    type: "CREATE_PHOTO_COSTUME",
-    data: costume
-  });
-};
-
 const mapDispatchToProps = {
-  createPhotosCostume
+  createPhotosCostume,
+  createPhotosAddMember,
+  createPhotosDelMember
 };
 
 const mapStateToProps = state => {
   return {
     [STORE_TYPES.STATE.CREATE.GROUP]: state.create.group,
-    [STORE_TYPES.STATE.CREATE.COSTUME]: state.create.costume
+    [STORE_TYPES.STATE.CREATE.COSTUME]: state.create.costume,
+    [STORE_TYPES.STATE.CREATE.MEMBER]: state.create.member
   };
 };
 
-const nextStepBtnDisabled = true;
-
-class Create_Member extends Component {
-  // constructor(props){
-  //   super(props);
-  // };
-
+class CreateMember extends Component {
   renderCosTitle = () => {
     let title = "PHOTO_COSTUME";
     costumes.forEach(cos => {
@@ -45,8 +40,22 @@ class Create_Member extends Component {
   renderMemUl = members => {
     const liNodes = members.map(member => {
       return (
-        <li className="select-button">
-          <button>{member.member_name[0]}</button>
+        <li
+          className={
+            this.props.member.includes(member.member_name_en)
+              ? "select-button active"
+              : "select-button"
+          }
+        >
+          <button
+            onClick={() => {
+              if (this.props.member.includes(member.member_name_en))
+                this.props.createPhotosDelMember(member.member_name_en);
+              else this.props.createPhotosAddMember(member.member_name_en);
+            }}
+          >
+            {member.member_name[0]}
+          </button>
           <h6>{member.member_name}</h6>
         </li>
       );
@@ -58,7 +67,6 @@ class Create_Member extends Component {
     let memberInThisCos = {};
     members.keyakizaka.forEach(member => {
       if (cos_mem_map[member.member_name_en].includes(this.props.costume)) {
-        console.log(member);
         const thisGen = `gen${member.member_gen}`;
         if (memberInThisCos.hasOwnProperty(thisGen))
           memberInThisCos[thisGen].push(member);
@@ -67,12 +75,10 @@ class Create_Member extends Component {
     });
 
     const genDivs = Object.entries(memberInThisCos).map(([gen, members]) => {
-      console.log(gen, members);      
+      const genNum = /[0-9]/.exec(gen);
       return (
-        <div 
-          className='member-gen'
-        >
-          <h3></h3>
+        <div className="member-gen">
+          <h3 className="member-gen-header">{genNum}期生</h3>
           {this.renderMemUl(members)}
         </div>
       );
@@ -81,7 +87,8 @@ class Create_Member extends Component {
   };
 
   render() {
-    this.props.createPhotosCostume(costumes[0].cos_id);
+    const nextStepBtnDisabled = this.props.member.length===0;
+    // this.props.createPhotosCostume(costumes[0].cos_id);
     return (
       <div className="create-member-container">
         {this.renderCosTitle()}
@@ -111,4 +118,4 @@ class Create_Member extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Create_Member);
+)(CreateMember);

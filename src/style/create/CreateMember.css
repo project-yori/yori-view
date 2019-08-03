@@ -4,18 +4,23 @@
   top: 50px;
 
   & div.member-gen{
-    /* margin: 0 0 10px 0; */
+    width: calc(80px * 3);
+    margin: 0 auto;
+    text-align: left;
+    & .member-gen-header{
+      margin: 10px;
+    }
   }
   
   & h2{
     margin: 10px;
   }
   & ul{
+    text-align: center;
     display: flex;
     flex-wrap: wrap;
     padding: 0;
     margin: 0 auto;
-    width: calc(80px * 3);
 
     & li.select-button{
       display: inline-block;
@@ -49,24 +54,8 @@
           color: #fff;
           font-weight: 700;
           border-color: #000;
-        }
-        &#nogizaka{
-          & button{
-            background-color: #7d2982;
-          }
-        }
-  
-        &#keyakizaka{
-          & button{
-            background-color: #5fb955;
-          }
-        }
-        
-        &#hinatazaka{
-          & button{
-            background-color: #7cc8e9;
-          }
-        }
+          background-color: #dd770099;
+        }        
 
         & h6{
           font-weight: 700;

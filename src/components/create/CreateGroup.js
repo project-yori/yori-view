@@ -22,7 +22,7 @@ const mapDispatchToProps = {
   createPhotosCostume
 };
 
-class Create_Group extends Component {
+class CreateGroup extends Component {
   handleSelectGroup = group => {
     this.props.createPhotosGroup(group);
   };
@@ -129,4 +129,4 @@ class Create_Group extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Create_Group);
+)(CreateGroup);
