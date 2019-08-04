@@ -22,7 +22,8 @@ export const getPhotos = () => dispatch => {
         if (res.ok) {
           return res.json();
         }
-        throw new Error(res.statusText);
+        console.warn(`${res.statusText} from ${API_HOST}${END_POINTS.PHOTO}`);
+        return;
       })
       .then(data => {
         dispatch({
