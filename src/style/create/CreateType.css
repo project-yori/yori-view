@@ -77,6 +77,29 @@
               height: 40px;
             }
 
+            & .photo-type-number-selector-range{
+              display: grid;
+              grid-template-columns: 40px auto 40px;
+              margin: 0 5px 0 0;
+
+              & input{
+                color: #000;
+                background-color: red;
+                z-index: 2;
+                border: solid 1px #000;
+              }
+
+              & button{
+                padding: 0;
+                width: 40px;
+                height: 40px;
+                border: solid 1px #000;
+                border-radius: 5px;
+                background-color: transparent;
+                font-size: 1em;
+              }
+            }
+
             & .photo-type-number-selector-closeBtn{
               padding: 0;
               width: 40px;

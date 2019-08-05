@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Close } from "@material-ui/icons";
+import { Slide } from "@material-ui/core";
 
 import {
   createPhotosAddMember,
   createPhotosCostume,
-  createPhotoTypeSelMemType
+  createPhotoTypeSelMemType,
+  createPhotoTypeNum
 } from "../../services/actions";
 import { ACTION_TYPES, STORE_TYPES } from "../../services/types";
 
@@ -29,13 +31,20 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   createPhotosAddMember,
   createPhotosCostume,
-  createPhotoTypeSelMemType
+  createPhotoTypeNum
 };
 
 export class CreateType extends Component {
   static propTypes = {
     prop: PropTypes
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      curr_selected_member: null,
+      curr_selected_type: null
+    };
+  }
 
   renderCosTitle = () => {
     let title = "PHOTO_COSTUME";
@@ -48,11 +57,7 @@ export class CreateType extends Component {
   renderMemListUl = () => {
     let memSelected = [];
     members.keyakizaka.forEach(member => {
-      if (
-        this.props.member.find(item => {
-          return item.photo_member === member.member_name_en;
-        }) !== undefined
-      )
+      if (this.props.member.hasOwnProperty(member.member_name_en))
         memSelected.push(member);
     });
     const liNodes = memSelected.map((member, i) => {
@@ -82,30 +87,51 @@ export class CreateType extends Component {
   };
 
   renderTypeNumSelectorItem = member => {
-    // const isSelectedType = this.props.curr_selected_member_type.member==
     return (
       <div className="photo-type-number-selector-container">
         <div className="photo-type-number-display">
           <span>{member.member_name}</span>
-          {/* <div className="photo-type-number-btn-container">
-            <button className="photo-type-number-btn yori">0</button>
-            <button className="photo-type-number-btn chu">0</button>
-            <button className="photo-type-number-btn hiki">0</button>
-          </div> */}
           {this.renderTypeSelectBtn(member.member_name_en)}
         </div>
         <div
           className={
-            this.props.curr_selected_member_type.member ===
-            member.member_name_en
+            this.state.curr_selected_member === member.member_name_en
               ? "photo-type-number-selector active"
               : "photo-type-number-selector"
           }
         >
-          <div />
-          <button 
+          <div className="photo-type-number-selector-range">
+            <button
+              onClick={() => {
+                const newNumber = this.props.member[member.member_name_en].photoTypeNumber[this.state.curr_selected_type]-1;
+                if(newNumber>=0) this.props.createPhotoTypeNum(member.member_name_en, this.state.curr_selected_type, newNumber);
+              }}
+            >-1</button>
+            <input
+              type="range"
+              min="0"
+              max="20"
+              step="1"
+              value={this.props.member[member.member_name_en].photoTypeNumber[this.state.curr_selected_type]}
+              onChange={event => {
+                this.props.createPhotoTypeNum(member.member_name_en, this.state.curr_selected_type, event.target.value)
+              }}
+            />
+            <button
+              onClick={() => {
+                const newNumber = this.props.member[member.member_name_en].photoTypeNumber[this.state.curr_selected_type]+1;
+                if(newNumber<=20) this.props.createPhotoTypeNum(member.member_name_en, this.state.curr_selected_type, newNumber);
+              }}
+            >+1</button>
+          </div>
+          <button
             className="photo-type-number-selector-closeBtn"
-            onClick={() => this.props.createPhotoTypeSelMemType(undefined, undefined)}
+            onClick={() =>
+              this.setState({
+                curr_selected_member: null,
+                curr_selected_type: null
+              })
+            }
           >
             <Close />
           </button>
@@ -122,33 +148,51 @@ export class CreateType extends Component {
     const btnNodes = this.typesInThisPhoto.map((type, i) => {
       let className = `photo-type-number-btn ${type}`;
       if (
-        this.props.curr_selected_member_type.type === type &&
-        this.props.curr_selected_member_type.member === member
+        this.state.curr_selected_type === type &&
+        this.state.curr_selected_member === member
       )
         className += " active";
       return (
-        <button 
-          key={`photo-type-number-btn-${i}`} 
+        <button
+          key={`photo-type-number-btn-${i}`}
           className={className}
-          onClick={() => this.props.createPhotoTypeSelMemType(member, type)}
+          onClick={() => {
+            this.setState({
+              curr_selected_member: member,
+              curr_selected_type: type
+            });
+          }}
         >
-          0
+          {this.props.member[member].photoTypeNumber[type]}
         </button>
       );
     });
     return <div className="photo-type-number-btn-container">{btnNodes}</div>;
   };
 
-  render() {
-    const nextStepBtnDisabled = true;
-
+  componentWillMount() {
     // Auto show first member's type-number selector
-    if (this.props.curr_selected_member_type.member === null){
-      this.props.createPhotoTypeSelMemType(
-        this.props.member[0].photo_member,
-        "yori"
-      );
-    }
+    const firstMember = members.keyakizaka.find(member => {
+      return this.props.member.hasOwnProperty(member.member_name_en);
+    });
+    console.log("firstMember", firstMember);
+    this.setState({
+      curr_selected_member: firstMember.member_name_en,
+      curr_selected_type: "yori"
+    });
+  };
+  
+  isNextStepBtnDisabled = () => {    
+    const zeroPhotoSubmitted = Object.entries(this.props.member).find(([key, member])=>{
+      return Object.entries(member.photoTypeNumber).find(([key, number])=>{
+        return number!==0
+      })
+    })===undefined;
+    
+    return zeroPhotoSubmitted;
+  }
+
+  render() {
 
     return (
       <div className="create-type-container">
@@ -160,9 +204,9 @@ export class CreateType extends Component {
           </Link>
           <Link to="/create/type">
             <button
-              disabled={nextStepBtnDisabled}
+              disabled={this.isNextStepBtnDisabled()}
               className={
-                nextStepBtnDisabled
+                this.isNextStepBtnDisabled()
                   ? "main-button disabled"
                   : "main-button next"
               }

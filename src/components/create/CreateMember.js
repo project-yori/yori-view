@@ -42,14 +42,14 @@ class CreateMember extends Component {
       return (
         <li
           className={            
-            this.props.member.find(item => {return item.photo_member===member.member_name_en})!==undefined
+            this.props.member.hasOwnProperty(member.member_name_en)
               ? "select-button active"
               : "select-button"
           }
         >
           <button
             onClick={() => {
-              const isInstore = this.props.member.find(item => {return item.photo_member===member.member_name_en})
+              const isInstore = this.props.member.hasOwnProperty(member.member_name_en);
               if (isInstore) this.props.createPhotosDelMember(member.member_name_en);
               else this.props.createPhotosAddMember(member.member_name_en);
             }}

@@ -23,6 +23,7 @@ const mapDispatchToProps = {
 };
 
 class CreateGroup extends Component {
+
   handleSelectGroup = group => {
     this.props.createPhotosGroup(group);
   };
