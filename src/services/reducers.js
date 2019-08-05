@@ -13,39 +13,40 @@ const initialState = {
       member: null,
       type: null
     }
-  },
-  //for test
-  create: {
-    group: "keyakizaka",
-    costume: "2019_july_2_yukata",
-    member: {
-      sugai_yuuka: {
-        photoTypeNumber: {
-          yori: 0,
-          chu: 0,
-          hiki: 0,
-          suwari: 0
-        }
-      },
-      moriya_akane: {
-        photoTypeNumber: {
-          yori: 0,
-          chu: 0,
-          hiki: 0,
-          suwari: 0
-        }
-      },
-      yamasaki_ten: {
-        photoTypeNumber: {
-          yori: 0,
-          chu: 0,
-          hiki: 0,
-          suwari: 0
-        }
-      }
-    },
-    curr_selected_member_type: { member: null, type: null }
   }
+  //for test
+  // create: {
+  //   group: "keyakizaka",
+  //   costume: "2019_july_2_yukata",
+  //   member: {
+  //     sugai_yuuka: {
+  //       photoTypeNumber: {
+  //         yori: 0,
+  //         chu: 0,
+  //         hiki: 0,
+  //         suwari: 0
+  //       }
+  //     },
+  //     moriya_akane: {
+  //       photoTypeNumber: {
+  //         yori: 0,
+  //         chu: 0,
+  //         hiki: 0,
+  //         suwari: 0
+  //       }
+  //     },
+  //     yamasaki_ten: {
+  //       photoTypeNumber: {
+  //         yori: 0,
+  //         chu: 0,
+  //         hiki: 0,
+  //         suwari: 0
+  //       }
+  //     }
+  //   },
+  //   curr_selected_member_type: { member: null, type: null }
+  // }
+  // for test
 };
 
 const setTopData = function(state, action) {
@@ -114,15 +115,10 @@ const create = function(state = initialState.create, action) {
               ...state[STORE_TYPES.STATE.CREATE.MEMBER][
                 action.data.photo_member
               ].photoTypeNumber,
-              [action.data.photo_type]: parseInt(action.data.photo_number)
+              [action.data.photo_type]: action.data.photo_number
             }
           }
         }
-      };
-    case ACTION_TYPES.CREATE_PHOTO_TYPE_CURR_SELECTED_MEM_TYPE:
-      return {
-        ...state,
-        [STORE_TYPES.STATE.CREATE.CURR_SELECTED_MEM_TYPE]: { ...action.data }
       };
     default:
       return state;

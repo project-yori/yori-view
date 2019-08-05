@@ -97,6 +97,14 @@
                 border-radius: 5px;
                 background-color: transparent;
                 font-size: 1em;
+
+                &:focus{
+                  outline: none;
+                }
+
+                &:active{
+                  background-color: #ddd;
+                }
               }
             }
 
@@ -107,6 +115,10 @@
               border: solid 1px #000;
               border-radius: 5px;
               background-color: transparent;
+
+              &:active{
+                background-color: #ddd;
+              }
               
               & svg{
                 height: 100%;

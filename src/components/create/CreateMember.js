@@ -41,7 +41,7 @@ class CreateMember extends Component {
     const liNodes = members.map(member => {
       return (
         <li
-          className={            
+          className={
             this.props.member.hasOwnProperty(member.member_name_en)
               ? "select-button active"
               : "select-button"
@@ -49,8 +49,11 @@ class CreateMember extends Component {
         >
           <button
             onClick={() => {
-              const isInstore = this.props.member.hasOwnProperty(member.member_name_en);
-              if (isInstore) this.props.createPhotosDelMember(member.member_name_en);
+              const isInstore = this.props.member.hasOwnProperty(
+                member.member_name_en
+              );
+              if (isInstore)
+                this.props.createPhotosDelMember(member.member_name_en);
               else this.props.createPhotosAddMember(member.member_name_en);
             }}
           >

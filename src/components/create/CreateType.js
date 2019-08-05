@@ -3,15 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Close } from "@material-ui/icons";
-import { Slide } from "@material-ui/core";
 
 import {
   createPhotosAddMember,
   createPhotosCostume,
-  createPhotoTypeSelMemType,
   createPhotoTypeNum
 } from "../../services/actions";
-import { ACTION_TYPES, STORE_TYPES } from "../../services/types";
+import { STORE_TYPES } from "../../services/types";
 
 import { members } from "../../constants/member";
 import { photoClass } from "../../constants/photoClass";
@@ -103,26 +101,54 @@ export class CreateType extends Component {
           <div className="photo-type-number-selector-range">
             <button
               onClick={() => {
-                const newNumber = this.props.member[member.member_name_en].photoTypeNumber[this.state.curr_selected_type]-1;
-                if(newNumber>=0) this.props.createPhotoTypeNum(member.member_name_en, this.state.curr_selected_type, newNumber);
+                const newNumber =
+                  this.props.member[member.member_name_en].photoTypeNumber[
+                    this.state.curr_selected_type
+                  ] - 1;
+                if (newNumber >= 0)
+                  this.props.createPhotoTypeNum(
+                    member.member_name_en,
+                    this.state.curr_selected_type,
+                    newNumber
+                  );
               }}
-            >-1</button>
+            >
+              -1
+            </button>
             <input
               type="range"
               min="0"
               max="20"
               step="1"
-              value={this.props.member[member.member_name_en].photoTypeNumber[this.state.curr_selected_type]}
+              value={
+                this.props.member[member.member_name_en].photoTypeNumber[
+                  this.state.curr_selected_type
+                ]
+              }
               onChange={event => {
-                this.props.createPhotoTypeNum(member.member_name_en, this.state.curr_selected_type, event.target.value)
+                this.props.createPhotoTypeNum(
+                  member.member_name_en,
+                  this.state.curr_selected_type,
+                  parseInt(event.target.value)
+                );
               }}
             />
             <button
               onClick={() => {
-                const newNumber = this.props.member[member.member_name_en].photoTypeNumber[this.state.curr_selected_type]+1;
-                if(newNumber<=20) this.props.createPhotoTypeNum(member.member_name_en, this.state.curr_selected_type, newNumber);
+                const newNumber =
+                  this.props.member[member.member_name_en].photoTypeNumber[
+                    this.state.curr_selected_type
+                  ] + 1;
+                if (newNumber <= 20)
+                  this.props.createPhotoTypeNum(
+                    member.member_name_en,
+                    this.state.curr_selected_type,
+                    newNumber
+                  );
               }}
-            >+1</button>
+            >
+              +1
+            </button>
           </div>
           <button
             className="photo-type-number-selector-closeBtn"
@@ -180,20 +206,20 @@ export class CreateType extends Component {
       curr_selected_member: firstMember.member_name_en,
       curr_selected_type: "yori"
     });
-  };
-  
-  isNextStepBtnDisabled = () => {    
-    const zeroPhotoSubmitted = Object.entries(this.props.member).find(([key, member])=>{
-      return Object.entries(member.photoTypeNumber).find(([key, number])=>{
-        return number!==0
-      })
-    })===undefined;
-    
-    return zeroPhotoSubmitted;
   }
 
-  render() {
+  isNextStepBtnDisabled = () => {
+    const zeroPhotoSubmitted =
+      Object.entries(this.props.member).find(([key, member]) => {
+        return Object.entries(member.photoTypeNumber).find(([key, number]) => {
+          return number !== 0;
+        });
+      }) === undefined;
 
+    return zeroPhotoSubmitted;
+  };
+
+  render() {
     return (
       <div className="create-type-container">
         {this.renderCosTitle()}
