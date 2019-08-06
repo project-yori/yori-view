@@ -15,37 +15,37 @@ const initialState = {
     }
   },
   //for test
-  create: {
-    group: "keyakizaka",
-    costume: "2019_july_2_yukata",
-    member: {
-      sugai_yuuka: {
-        photoTypeNumber: {
-          yori: 2,
-          chu: 0,
-          hiki: 1,
-          suwari: 0
-        }
-      },
-      moriya_akane: {
-        photoTypeNumber: {
-          yori: 0,
-          chu: 5,
-          hiki: 0,
-          suwari: 0
-        }
-      },
-      yamasaki_ten: {
-        photoTypeNumber: {
-          yori: 0,
-          chu: 1,
-          hiki: 0,
-          suwari: 0
-        }
-      }
-    },
-    curr_selected_member_type: { member: null, type: null }
-  }
+  // create: {
+  //   group: "keyakizaka",
+  //   costume: "2019_july_2_yukata",
+  //   member: {
+  //     sugai_yuuka: {
+  //       photoTypeNumber: {
+  //         yori: 2,
+  //         chu: 0,
+  //         hiki: 1,
+  //         suwari: 0
+  //       }
+  //     },
+  //     moriya_akane: {
+  //       photoTypeNumber: {
+  //         yori: 0,
+  //         chu: 5,
+  //         hiki: 0,
+  //         suwari: 0
+  //       }
+  //     },
+  //     yamasaki_ten: {
+  //       photoTypeNumber: {
+  //         yori: 0,
+  //         chu: 1,
+  //         hiki: 0,
+  //         suwari: 0
+  //       }
+  //     }
+  //   },
+  //   curr_selected_member_type: { member: null, type: null }
+  // }
   // for test
 };
 
