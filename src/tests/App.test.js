@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './components/App';
+import { App } from '../components/App';
 
 // TODO: Need to figure out how to test connected component.
 // Simply following https://redux.js.org/recipes/writing-tests#connected-components

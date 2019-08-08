@@ -13,7 +13,7 @@ const initialState = {
       member: null,
       type: null
     }
-  }
+  },
   //for test
   // create: {
   //   group: "keyakizaka",
@@ -21,16 +21,16 @@ const initialState = {
   //   member: {
   //     sugai_yuuka: {
   //       photoTypeNumber: {
-  //         yori: 0,
+  //         yori: 2,
   //         chu: 0,
-  //         hiki: 0,
+  //         hiki: 1,
   //         suwari: 0
   //       }
   //     },
   //     moriya_akane: {
   //       photoTypeNumber: {
   //         yori: 0,
-  //         chu: 0,
+  //         chu: 5,
   //         hiki: 0,
   //         suwari: 0
   //       }
@@ -38,7 +38,7 @@ const initialState = {
   //     yamasaki_ten: {
   //       photoTypeNumber: {
   //         yori: 0,
-  //         chu: 0,
+  //         chu: 1,
   //         hiki: 0,
   //         suwari: 0
   //       }

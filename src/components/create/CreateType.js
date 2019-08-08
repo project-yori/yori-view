@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Close } from "@material-ui/icons";
@@ -13,6 +12,7 @@ import { STORE_TYPES } from "../../services/types";
 
 import { members } from "../../constants/member";
 import { photoClass } from "../../constants/photoClass";
+import { createPhoto } from "../../services/apis/createPhoto";
 
 import "../../style/create/CreateType.css";
 
@@ -20,9 +20,7 @@ const mapStateToProps = state => {
   return {
     [STORE_TYPES.STATE.CREATE.GROUP]: state.create.group,
     [STORE_TYPES.STATE.CREATE.COSTUME]: state.create.costume,
-    [STORE_TYPES.STATE.CREATE.MEMBER]: state.create.member,
-    [STORE_TYPES.STATE.CREATE.CURR_SELECTED_MEM_TYPE]:
-      state.create.curr_selected_member_type
+    [STORE_TYPES.STATE.CREATE.MEMBER]: state.create.member
   };
 };
 
@@ -33,9 +31,6 @@ const mapDispatchToProps = {
 };
 
 export class CreateType extends Component {
-  static propTypes = {
-    prop: PropTypes
-  };
   constructor(props) {
     super(props);
     this.state = {
@@ -201,7 +196,6 @@ export class CreateType extends Component {
     const firstMember = members.keyakizaka.find(member => {
       return this.props.member.hasOwnProperty(member.member_name_en);
     });
-    console.log("firstMember", firstMember);
     this.setState({
       curr_selected_member: firstMember.member_name_en,
       curr_selected_type: "yori"
@@ -228,17 +222,22 @@ export class CreateType extends Component {
           <Link to="/create/member">
             <button className="main-button">もどる</button>
           </Link>
-          <Link to="/create/type">
-            <button
-              disabled={this.isNextStepBtnDisabled()}
-              className={
-                this.isNextStepBtnDisabled()
-                  ? "main-button disabled"
-                  : "main-button next"
-              }
-            >
-              登録
-            </button>
+          <Link to="/">
+          <button
+            disabled={this.isNextStepBtnDisabled()}
+            className={
+              this.isNextStepBtnDisabled()
+                ? "main-button disabled"
+                : "main-button next"
+            }
+            onClick={() => {
+              const { group, costume, member } = this.props;
+              const payload = createPhoto(group, costume, member);
+              console.log(payload);
+            }}
+          >
+            登録
+          </button>
           </Link>
         </div>
       </div>

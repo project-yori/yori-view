@@ -16,6 +16,7 @@ export const STORE_TYPES = {
       META: "top",
       PHOTOS: "photos"
     },
+    
     CREATE: {
       META: "create",
       GROUP: "group",
