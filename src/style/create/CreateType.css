@@ -1,7 +1,8 @@
 .create-type-container{
-  height: calc(100vh - 50px - 50px);
+  height: calc(100vh - 50px - 60px);
   position: relative;
   top: 50px;
+  overflow: auto;
 
   & .create-type-member-list-container{
     margin: 0 10px;
@@ -31,7 +32,7 @@
 
         & .photo-type-number-selector-container{
           margin: 5px 0;
-          font-size: 1.5em;        
+          font-size: 1.4em;        
           border: solid 1px #000;
           border-radius: 5px;
           

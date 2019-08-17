@@ -86,7 +86,7 @@ class CreateMember extends Component {
         </div>
       );
     });
-    return <div>{genDivs}</div>;
+    return genDivs;
   };
 
   render() {
