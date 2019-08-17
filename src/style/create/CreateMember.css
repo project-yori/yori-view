@@ -7,7 +7,6 @@
   & div.member-gen{
     width: calc(80px * 3);
     text-align: left;
-    /* overflow: hidden; */
     margin: 0 auto;
     & .member-gen-header{
       margin: 10px;
