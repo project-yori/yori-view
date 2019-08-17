@@ -10,12 +10,14 @@ body, html{
 }
 
 .main-button-container{
-  margin: 10px 15px;
+  padding: 10px 15px;
+  /* margin: 10px 15px; */
   position: fixed;
   width: calc(100vw - 30px);
   display: flex;
   justify-content: space-between;
   bottom: 0;
+  background-color: #fff;
 }
 
 .main-button{
