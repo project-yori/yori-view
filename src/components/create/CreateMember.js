@@ -8,6 +8,7 @@ import {
   createPhotosAddMember,
   createPhotosDelMember
 } from "../../services/actions";
+import CreateFooterButton from "./CreateFooterButton";
 
 import "../../style/create/CreateMember.css";
 import { cos_mem_map } from "../../constants/cos_mem_map";
@@ -38,9 +39,10 @@ class CreateMember extends Component {
   };
 
   renderMemUl = members => {
-    const liNodes = members.map(member => {
+    const liNodes = members.map((member, i) => {
       return (
         <li
+          key={i}
           className={
             this.props.member.hasOwnProperty(member.member_name_en)
               ? "select-button active"
@@ -80,7 +82,7 @@ class CreateMember extends Component {
     const genDivs = Object.entries(memberInThisCos).map(([gen, members]) => {
       const genNum = /[0-9]/.exec(gen);
       return (
-        <div className="member-gen">
+        <div className="member-gen" key={genNum}>
           <h3 className="member-gen-header">{genNum}期生</h3>
           {this.renderMemUl(members)}
         </div>
@@ -90,28 +92,18 @@ class CreateMember extends Component {
   };
 
   render() {
-    const nextStepBtnDisabled = this.props.member.length === 0;
     return (
       <div className="create-member-container">
         {this.renderCosTitle()}
         {this.renderGenDiv()}
-        <div className="main-button-container">
-          <Link to="/create/group">
-            <button className="main-button">もどる</button>
-          </Link>
-          <Link to="/create/type">
-            <button
-              disabled={nextStepBtnDisabled}
-              className={
-                nextStepBtnDisabled
-                  ? "main-button disabled"
-                  : "main-button next"
-              }
-            >
-              次へ
-            </button>
-          </Link>
-        </div>
+        <CreateFooterButton 
+          prevPage='/create/group'
+          nextPage='/create/type'
+          unlockNext={Object.keys(this.props.member).length > 0}
+        >
+          {'もどる'}
+          {'次へ'}
+        </CreateFooterButton>
       </div>
     );
   }

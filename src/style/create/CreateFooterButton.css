@@ -1,0 +1,40 @@
+.create-footer-button-container{
+  padding: 10px 15px;
+  position: fixed;
+  width: calc(100vw - 30px);
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  background-color: #fff;
+}
+
+.create-footer-button{
+  position: relative;
+  bottom: 0;
+  margin: 0;
+  border: solid 1px #000;
+  border-radius: 5px;
+  width: calc((100vw - 30px - 10px) /2);
+  background-color: #fff;
+  font-size: 1.2em;
+  height: 45px;
+
+  &:active{
+    background-color: #fff;
+  }
+
+  &.next{
+    background-color: #147efb;
+    color: #fff;
+  }
+
+  &.disabled{
+    border-color: #999;
+    color: #999;  
+    
+  }
+
+  &:focus{
+    outline: none;
+  }
+}

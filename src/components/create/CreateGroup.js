@@ -6,6 +6,7 @@ import { createPhotosGroup, createPhotosCostume } from "../../services/actions";
 import { STORE_TYPES } from "../../services/types";
 import { photoClass } from "../../constants/photoClass";
 
+import CreateFooterButton from "./CreateFooterButton";
 import "../../style/create/CreateGroup.css";
 
 const mapStateToProps = state => {
@@ -103,23 +104,14 @@ class CreateGroup extends Component {
             {this.renderCosDropDown()}
           </div>
         </div>
-        <div className="main-button-container">
-          <Link to="/">
-            <button className="main-button">もどる</button>
-          </Link>
-          <Link to="/create/member">
-            <button
-              disabled={nextStepBtnDisabled}
-              className={
-                nextStepBtnDisabled
-                  ? "main-button disabled"
-                  : "main-button next"
-              }
-            >
-              次へ
-            </button>
-          </Link>
-        </div>
+        <CreateFooterButton 
+          prevPage='/'
+          nextPage='/create/member'
+          unlockNext={this.props.group !== null && this.props.costume !== null}
+        >
+          {'もどる'}
+          {'次へ'}
+        </CreateFooterButton>
       </div>
     );
   }

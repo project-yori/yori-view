@@ -14,6 +14,8 @@ import { members } from "../../constants/member";
 import { photoClass } from "../../constants/photoClass";
 import { createPhoto } from "../../services/apis/createPhoto";
 
+import CreateFooterButton from "./CreateFooterButton";
+
 import "../../style/create/CreateType.css";
 
 const mapStateToProps = state => {
@@ -212,34 +214,26 @@ export class CreateType extends Component {
 
     return zeroPhotoSubmitted;
   };
+  handleClickNextBtn = () => {
+    const { group, costume, member } = this.props;
+    const payload = createPhoto(group, costume, member);
+    console.log(payload);
+  };
 
   render() {
     return (
       <div className="create-type-container">
         {this.renderCosTitle()}
         {this.renderMemListUl()}
-        <div className="main-button-container">
-          <Link to="/create/member">
-            <button className="main-button">もどる</button>
-          </Link>
-          <Link to="/">
-          <button
-            disabled={this.isNextStepBtnDisabled()}
-            className={
-              this.isNextStepBtnDisabled()
-                ? "main-button disabled"
-                : "main-button next"
-            }
-            onClick={() => {
-              const { group, costume, member } = this.props;
-              const payload = createPhoto(group, costume, member);
-              console.log(payload);
-            }}
-          >
-            登録
-          </button>
-          </Link>
-        </div>
+        <CreateFooterButton 
+          prevPage='/create/member'
+          nextPage='/'
+          unlockNext={!this.isNextStepBtnDisabled()}
+          clickAction={this.handleClickNextBtn}
+        >
+          {'もどる'}
+          {'登録'}
+        </CreateFooterButton>
       </div>
     );
   }

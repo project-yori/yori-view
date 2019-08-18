@@ -8,11 +8,7 @@ const initialState = {
   [STORE_TYPES.STATE.CREATE.META]: {
     [STORE_TYPES.STATE.CREATE.GROUP]: null,
     [STORE_TYPES.STATE.CREATE.COSTUME]: null,
-    [STORE_TYPES.STATE.CREATE.MEMBER]: [],
-    [STORE_TYPES.STATE.CREATE.CURR_SELECTED_MEM_TYPE]: {
-      member: null,
-      type: null
-    }
+    [STORE_TYPES.STATE.CREATE.MEMBER]: {},
   },
 };
 
