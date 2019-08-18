@@ -10,6 +10,36 @@ const initialState = {
     [STORE_TYPES.STATE.CREATE.COSTUME]: null,
     [STORE_TYPES.STATE.CREATE.MEMBER]: {},
   },
+  create: {
+    group: 'keyakizaka',
+    costume: 'sakamichiakb_1',
+    member: {
+      sugai_yuuka: {
+        photoTypeNumber: {
+          yori: 1,
+          chu: 0,
+          hiki: 0,
+          suwari: 0
+        }
+      },
+      imaizumi_yui: {
+        photoTypeNumber: {
+          yori: 0,
+          chu: 2,
+          hiki: 0,
+          suwari: 0
+        }
+      },
+      hirate_yurina: {
+        photoTypeNumber: {
+          yori: 0,
+          chu: 0,
+          hiki: 3,
+          suwari: 0
+        }
+      }
+    }
+  }
 };
 
 const setTopData = function(state, action) {

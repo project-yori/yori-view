@@ -1,3 +1,12 @@
+/**
+ * BACK and NEXT buttons at bottom of CreateView
+ * PROPS:
+ *   prevPage:string : route path of component mounted by tapping BACK button
+ *   nextPage:string : route path of component mounted by tapping NEXT button
+ *   enableNext:bool : condition to enable NEXT button
+ *   clickAction:func : function triggered by tapping NEXT button
+ */
+
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -20,8 +29,8 @@ export default class CreateFooterButton extends Component {
         </Link>
         <Link to={this.props.nextPage}>
           <button
-            disabled={!this.props.unlockNext}
-            className={this.props.unlockNext ?
+            disabled={!this.props.enableNext}
+            className={this.props.enableNext ?
               'create-footer-button next' :
               'create-footer-button disabled'
             }
@@ -36,12 +45,15 @@ export default class CreateFooterButton extends Component {
 };
 
 CreateFooterButton.defaultProps = {
+  prevPage: '/',
+  nextPage: '/',
+  enableNext: false,  
   clickAction: () => { return }
 }
 
 CreateFooterButton.propTypes = {
   prevPage: PropTypes.string,
   nextPage: PropTypes.string,
-  unlockNext: PropTypes.bool,
+  enableNext: PropTypes.bool,
   clickAction: PropTypes.func
 };

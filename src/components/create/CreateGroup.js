@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { createPhotosGroup, createPhotosCostume } from "../../services/actions";
 import { STORE_TYPES } from "../../services/types";
 import { photoClass } from "../../constants/photoClass";
 
+import CreateCircleSelectButton from "./CreateCircleSelectButton";
 import CreateFooterButton from "./CreateFooterButton";
 import "../../style/create/CreateGroup.css";
 
@@ -50,53 +50,36 @@ class CreateGroup extends Component {
   };
 
   render() {
-    const nextStepBtnDisabled =
-      this.props.group === null || this.props.costume === null;
     return (
       <div className="create-group-container">
         <div className="create-group-opt-container">
           <div className="group">
             <h2>グループ選択</h2>
             <ul>
-              <li
+              <CreateCircleSelectButton
+                key={"group-0"}
                 id="nogizaka"
-                className={
-                  this.props.group === "nogizaka"
-                    ? "select-button active"
-                    : "select-button"
-                }
+                enable={this.props.group === "nogizaka"}
+                clickAction={() => this.handleSelectGroup("nogizaka")}
               >
-                <button onClick={() => this.handleSelectGroup("nogizaka")}>
-                  乃
-                </button>
-                <h6>乃木坂46</h6>
-              </li>
-              <li
+                {"乃木坂46"}
+              </CreateCircleSelectButton>
+              <CreateCircleSelectButton
+                key={"group-1"}
                 id="keyakizaka"
-                className={
-                  this.props.group === "keyakizaka"
-                    ? "select-button active"
-                    : "select-button"
-                }
+                enable={this.props.group === "keyakizaka"}
+                clickAction={() => this.handleSelectGroup("keyakizaka")}
               >
-                <button onClick={() => this.handleSelectGroup("keyakizaka")}>
-                  欅
-                </button>
-                <h6>欅坂46</h6>
-              </li>
-              <li
+                {"欅坂46"}
+              </CreateCircleSelectButton>
+              <CreateCircleSelectButton
+                key={"group-2"}
                 id="hinatazaka"
-                className={
-                  this.props.group === "hinatazaka"
-                    ? "select-button active"
-                    : "select-button"
-                }
+                enable={this.props.group === "hinatazaka"}
+                clickAction={() => this.handleSelectGroup("hinatazaka")}
               >
-                <button onClick={() => this.handleSelectGroup("hinatazaka")}>
-                  日
-                </button>
-                <h6>日向坂46</h6>
-              </li>
+                {"日向坂46"}
+              </CreateCircleSelectButton>
             </ul>
           </div>
           <div className="costume">
@@ -104,13 +87,13 @@ class CreateGroup extends Component {
             {this.renderCosDropDown()}
           </div>
         </div>
-        <CreateFooterButton 
-          prevPage='/'
-          nextPage='/create/member'
-          unlockNext={this.props.group !== null && this.props.costume !== null}
+        <CreateFooterButton
+          prevPage="/"
+          nextPage="/create/member"
+          enableNext={this.props.group !== null && this.props.costume !== null}
         >
-          {'もどる'}
-          {'次へ'}
+          {"もどる"}
+          {"次へ"}
         </CreateFooterButton>
       </div>
     );
