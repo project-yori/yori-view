@@ -22,46 +22,5 @@
     flex-wrap: wrap;
     padding: 0;
     margin: 0 auto;
-
-    & li.select-button{
-      display: inline-block;
-      color: #999;
-      
-      & button{
-        margin: 0 10px;
-        padding: 0;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        border: solid 1px #999;
-        background-color: #fff;
-        font-size: 1.5em;
-        color: #999;
-
-        &:focus{
-          outline: none;
-        }
-      }
-
-      & h6{        
-        font-weight: 400;
-        margin: 5px 0;
-      }
-
-      &.active{
-        color: #000;
-
-        & button{
-          color: #fff;
-          font-weight: 700;
-          border-color: #000;
-          background-color: #dd770099;
-        }        
-
-        & h6{
-          font-weight: 700;
-        }
-      }
-    }
   }
 }

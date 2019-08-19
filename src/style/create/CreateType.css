@@ -10,6 +10,7 @@
     & ul{
       padding: 0;
       margin: 0 auto;
+      list-style: none;
   
       & li{
         & .create-type-member-list-header{

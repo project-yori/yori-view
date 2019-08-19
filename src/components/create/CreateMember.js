@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { STORE_TYPES } from "../../services/types";
 import {
@@ -8,6 +7,8 @@ import {
   createPhotosAddMember,
   createPhotosDelMember
 } from "../../services/actions";
+import CreateFooterButton from "./CreateFooterButton";
+import CreateCircleSelectButton from "./CreateCircleSelectButton";
 
 import "../../style/create/CreateMember.css";
 import { cos_mem_map } from "../../constants/cos_mem_map";
@@ -30,37 +31,34 @@ const mapStateToProps = state => {
 
 class CreateMember extends Component {
   renderCosTitle = () => {
-    let title = "PHOTO_COSTUME";
-    photoClass.forEach(photo => {
-      if (photo.photo_id === this.props.costume) title = photo.photo_name;
+    const photoSelected = photoClass.find(photo => {
+      return photo.photo_id === this.props.costume;
     });
+    const title =
+      photoSelected === undefined ? "PHOTO_COSTUME" : photoSelected.photo_name;
     return <h3>{title}</h3>;
   };
+  
+  handleClickMember = member => {
+    const isInstore = this.props.member.hasOwnProperty(
+      member.member_name_en
+    );
+    if (isInstore)
+      this.props.createPhotosDelMember(member.member_name_en);
+    else this.props.createPhotosAddMember(member.member_name_en);
+  }
 
   renderMemUl = members => {
-    const liNodes = members.map(member => {
+    const liNodes = members.map((member, i) => {
       return (
-        <li
-          className={
-            this.props.member.hasOwnProperty(member.member_name_en)
-              ? "select-button active"
-              : "select-button"
-          }
+        <CreateCircleSelectButton
+          id='member'
+          key={`member-${i}`}
+          enable={this.props.member.hasOwnProperty(member.member_name_en)}
+          clickAction={() => this.handleClickMember(member)}
         >
-          <button
-            onClick={() => {
-              const isInstore = this.props.member.hasOwnProperty(
-                member.member_name_en
-              );
-              if (isInstore)
-                this.props.createPhotosDelMember(member.member_name_en);
-              else this.props.createPhotosAddMember(member.member_name_en);
-            }}
-          >
-            {member.member_name[0]}
-          </button>
-          <h6>{member.member_name}</h6>
-        </li>
+          {member.member_name}
+        </CreateCircleSelectButton>
       );
     });
     return <ul>{liNodes}</ul>;
@@ -80,7 +78,7 @@ class CreateMember extends Component {
     const genDivs = Object.entries(memberInThisCos).map(([gen, members]) => {
       const genNum = /[0-9]/.exec(gen);
       return (
-        <div className="member-gen">
+        <div className="member-gen" key={genNum}>
           <h3 className="member-gen-header">{genNum}期生</h3>
           {this.renderMemUl(members)}
         </div>
@@ -90,28 +88,18 @@ class CreateMember extends Component {
   };
 
   render() {
-    const nextStepBtnDisabled = this.props.member.length === 0;
     return (
       <div className="create-member-container">
         {this.renderCosTitle()}
         {this.renderGenDiv()}
-        <div className="main-button-container">
-          <Link to="/create/group">
-            <button className="main-button">もどる</button>
-          </Link>
-          <Link to="/create/type">
-            <button
-              disabled={nextStepBtnDisabled}
-              className={
-                nextStepBtnDisabled
-                  ? "main-button disabled"
-                  : "main-button next"
-              }
-            >
-              次へ
-            </button>
-          </Link>
-        </div>
+        <CreateFooterButton
+          prevPage="/create/group"
+          nextPage="/create/type"
+          enableNext={Object.keys(this.props.member).length > 0}
+        >
+          {"もどる"}
+          {"次へ"}
+        </CreateFooterButton>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Header from './Header';
 import PhotoList from './PhotoList';
-import CreateButton from './create/CreateButton';
+import CreateFloatPlusButton from './create/CreateFloatPlusButton';
 import ActionSheet from './ActionSheet';
 import Footer from './Footer';
 
@@ -22,7 +22,7 @@ export default class PhotoListView extends Component {
       <div className='photo-list-view'>
         <Header>ALBUM_NAME</Header>
         <PhotoList />
-        <CreateButton showActionSheet={this.showActionSheet}/>
+        <CreateFloatPlusButton showActionSheet={this.showActionSheet}/>
         <div 
           className={this.state.showActionSheet ? 'dimmed-view show' : 'dimmed-view'}
           onClick={() => this.showActionSheet()}

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Close } from "@material-ui/icons";
 
 import {
   createPhotosAddMember,
@@ -13,6 +11,9 @@ import { STORE_TYPES } from "../../services/types";
 import { members } from "../../constants/member";
 import { photoClass } from "../../constants/photoClass";
 import { createPhoto } from "../../services/apis/createPhoto";
+
+import CreateFooterButton from "./CreateFooterButton";
+import CreateTypeNumberSelectorItem from "./CreateTypeNumberSelectorItem";
 
 import "../../style/create/CreateType.css";
 
@@ -79,116 +80,54 @@ export class CreateType extends Component {
     );
   };
 
-  renderTypeNumSelectorItem = member => {
-    return (
-      <div className="photo-type-number-selector-container">
-        <div className="photo-type-number-display">
-          <span>{member.member_name}</span>
-          {this.renderTypeSelectBtn(member.member_name_en)}
-        </div>
-        <div
-          className={
-            this.state.curr_selected_member === member.member_name_en
-              ? "photo-type-number-selector active"
-              : "photo-type-number-selector"
-          }
-        >
-          <div className="photo-type-number-selector-range">
-            <button
-              onClick={() => {
-                const newNumber =
-                  this.props.member[member.member_name_en].photoTypeNumber[
-                    this.state.curr_selected_type
-                  ] - 1;
-                if (newNumber >= 0)
-                  this.props.createPhotoTypeNum(
-                    member.member_name_en,
-                    this.state.curr_selected_type,
-                    newNumber
-                  );
-              }}
-            >
-              -1
-            </button>
-            <input
-              type="range"
-              min="0"
-              max="20"
-              step="1"
-              value={
-                this.props.member[member.member_name_en].photoTypeNumber[
-                  this.state.curr_selected_type
-                ]
-              }
-              onChange={event => {
-                this.props.createPhotoTypeNum(
-                  member.member_name_en,
-                  this.state.curr_selected_type,
-                  parseInt(event.target.value)
-                );
-              }}
-            />
-            <button
-              onClick={() => {
-                const newNumber =
-                  this.props.member[member.member_name_en].photoTypeNumber[
-                    this.state.curr_selected_type
-                  ] + 1;
-                if (newNumber <= 20)
-                  this.props.createPhotoTypeNum(
-                    member.member_name_en,
-                    this.state.curr_selected_type,
-                    newNumber
-                  );
-              }}
-            >
-              +1
-            </button>
-          </div>
-          <button
-            className="photo-type-number-selector-closeBtn"
-            onClick={() =>
-              this.setState({
-                curr_selected_member: null,
-                curr_selected_type: null
-              })
-            }
-          >
-            <Close />
-          </button>
-        </div>
-      </div>
+  handleClickTypeInSelectorItem = (member, type) => {
+    this.setState({
+      curr_selected_member: member,
+      curr_selected_type: type
+    });
+  };
+
+  handleClickNumPlusMinusButton = option => {
+    const newNumber =
+      this.props.member[this.state.curr_selected_member].photoTypeNumber[
+        this.state.curr_selected_type
+      ] + option;
+    if (
+      (option === 1 && newNumber <= 20) ||
+      (option === -1 && newNumber >= 0)
+    ) {
+      this.props.createPhotoTypeNum(
+        this.state.curr_selected_member,
+        this.state.curr_selected_type,
+        newNumber
+      );
+    }
+  };
+
+  handleChangeSelectorValue = event => {
+    this.props.createPhotoTypeNum(
+      this.state.curr_selected_member,
+      this.state.curr_selected_type,
+      parseInt(event.target.value)
     );
   };
 
-  typesInThisPhoto = photoClass.find(photo => {
-    return photo.photo_id === this.props.costume;
-  }).photo_type;
-
-  renderTypeSelectBtn = member => {
-    const btnNodes = this.typesInThisPhoto.map((type, i) => {
-      let className = `photo-type-number-btn ${type}`;
-      if (
-        this.state.curr_selected_type === type &&
-        this.state.curr_selected_member === member
-      )
-        className += " active";
-      return (
-        <button
-          key={`photo-type-number-btn-${i}`}
-          className={className}
-          onClick={() => {
-            this.setState({
-              curr_selected_member: member,
-              curr_selected_type: type
-            });
-          }}
-        >
-          {this.props.member[member].photoTypeNumber[type]}
-        </button>
-      );
-    });
-    return <div className="photo-type-number-btn-container">{btnNodes}</div>;
+  renderTypeNumSelectorItem = member => {
+    return (
+      <CreateTypeNumberSelectorItem
+        thisMember={member}
+        isCurrSelected={() => {
+          return this.state.curr_selected_member === member.member_name_en
+            ? this.state.curr_selected_type
+            : false;
+        }}
+        clickTypeAction={(member, type) =>
+          this.handleClickTypeInSelectorItem(member, type)
+        }
+        clickNumPlusMinusAction={this.handleClickNumPlusMinusButton}
+        changeSelectorValue={this.handleChangeSelectorValue}
+      />
+    );
   };
 
   componentWillMount() {
@@ -213,33 +152,26 @@ export class CreateType extends Component {
     return zeroPhotoSubmitted;
   };
 
+  handleClickNextBtn = () => {
+    const { group, costume, member } = this.props;
+    const payload = createPhoto(group, costume, member);
+    console.log(payload);
+  };
+
   render() {
     return (
       <div className="create-type-container">
         {this.renderCosTitle()}
         {this.renderMemListUl()}
-        <div className="main-button-container">
-          <Link to="/create/member">
-            <button className="main-button">もどる</button>
-          </Link>
-          <Link to="/">
-          <button
-            disabled={this.isNextStepBtnDisabled()}
-            className={
-              this.isNextStepBtnDisabled()
-                ? "main-button disabled"
-                : "main-button next"
-            }
-            onClick={() => {
-              const { group, costume, member } = this.props;
-              const payload = createPhoto(group, costume, member);
-              console.log(payload);
-            }}
-          >
-            登録
-          </button>
-          </Link>
-        </div>
+        <CreateFooterButton
+          prevPage="/create/member"
+          nextPage="/"
+          enableNext={!this.isNextStepBtnDisabled()}
+          clickAction={this.handleClickNextBtn}
+        >
+          {"もどる"}
+          {"登録"}
+        </CreateFooterButton>
       </div>
     );
   }
