@@ -8,7 +8,7 @@ const initialState = {
   [STORE_TYPES.STATE.CREATE.META]: {
     [STORE_TYPES.STATE.CREATE.GROUP]: null,
     [STORE_TYPES.STATE.CREATE.COSTUME]: null,
-    [STORE_TYPES.STATE.CREATE.MEMBER]: {},
+    [STORE_TYPES.STATE.CREATE.MEMBER]: {}
   }
 };
 
@@ -26,6 +26,13 @@ const top = function(state = initialState.top, action) {
     default:
       return state;
   }
+};
+const postPhotoInstances = function(photos) {
+  const data = window.localStorage.hasOwnProperty('yori-photo') 
+    ? JSON.parse(window.localStorage.getItem('yori-photo'))
+    : []
+  ;
+  window.localStorage.setItem("yori-photo", JSON.stringify([...photos, ...data]));
 };
 
 const create = function(state = initialState.create, action) {
@@ -83,6 +90,14 @@ const create = function(state = initialState.create, action) {
           }
         }
       };
+    case ACTION_TYPES.CREATE_PHOTO_INSTANCE:
+      postPhotoInstances(action.data);
+    case ACTION_TYPES.CREATE_CLEAR:
+      return {
+        [STORE_TYPES.STATE.CREATE.GROUP]: null,
+        [STORE_TYPES.STATE.CREATE.COSTUME]: null,
+        [STORE_TYPES.STATE.CREATE.MEMBER]: {}
+      }
     default:
       return state;
   }

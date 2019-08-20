@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getPhotos();
+    // this.props.getPhotos();
   }
 
   render() {
