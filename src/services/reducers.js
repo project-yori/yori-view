@@ -28,7 +28,7 @@ const top = function(state = initialState.top, action) {
   }
 };
 const postPhotoInstances = function(photos) {
-  const data = window.localStorage.hasOwnProperty('yori-photo') 
+  const data = window.localStorage['yori-photo']
     ? JSON.parse(window.localStorage.getItem('yori-photo'))
     : []
   ;
