@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import {
   createPhotosAddMember,
   createPhotosCostume,
-  createPhotoTypeNum
+  createPhotoTypeNum,
+  createPhotoInstance,
+  createClear
 } from "../../services/actions";
 import { STORE_TYPES } from "../../services/types";
 
@@ -28,7 +30,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   createPhotosAddMember,
   createPhotosCostume,
-  createPhotoTypeNum
+  createPhotoTypeNum,
+  createPhotoInstance,
+  createClear
 };
 
 export class CreateType extends Component {
@@ -156,6 +160,8 @@ export class CreateType extends Component {
     const { group, costume, member } = this.props;
     const payload = createPhoto(group, costume, member);
     console.log(payload);
+    this.props.createPhotoInstance(payload);
+    this.props.createClear();
   };
 
   render() {

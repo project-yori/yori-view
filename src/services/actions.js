@@ -8,34 +8,41 @@ const API_HOST = isProduction()
   : `http://${process.env.HOST || "localhost"}:5000`;
 
 export const getPhotos = () => dispatch => {
-  const headers = new Headers();
-  headers.append("Access-Control-Allow-Origin", API_HOST);
+  // const headers = new Headers();
+  // headers.append("Access-Control-Allow-Origin", API_HOST);
 
-  return new Promise((resolve, reject) => {
-    window
-      .fetch(`${API_HOST}${END_POINTS.PHOTO}`, {
-        mode: "cors",
-        cache: "no-cache",
-        headers: headers
-      })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        console.warn(`${res.statusText} from ${API_HOST}${END_POINTS.PHOTO}`);
-        return;
-      })
-      .then(data => {
-        dispatch({
-          type: ACTION_TYPES.GET_PHOTOS,
-          data
-        });
-        resolve(data);
-      })
-      .catch(error => {
-        reject(error);
-      });
-  });
+  // return new Promise((resolve, reject) => {
+  //   window
+  //     .fetch(`${API_HOST}${END_POINTS.PHOTO}`, {
+  //       mode: "cors",
+  //       cache: "no-cache",
+  //       headers: headers
+  //     })
+  //     .then(res => {
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //       console.warn(`${res.statusText} from ${API_HOST}${END_POINTS.PHOTO}`);
+  //       return;
+  //     })
+  //     .then(data => {
+  //       dispatch({
+  //         type: ACTION_TYPES.GET_PHOTOS,
+  //         data
+  //       });
+  //       resolve(data);
+  //     })
+  //     .catch(error => {
+  //       reject(error);
+  //     });
+  // });
+  const photos = JSON.parse(localStorage.getItem('yori-photo'));
+  if(photos !== null){
+    dispatch({
+      type: ACTION_TYPES.GET_PHOTOS,
+      data: photos
+    });
+  }
 };
 
 export const createPhotosGroup = group => dispatch => {
@@ -73,9 +80,16 @@ export const createPhotoTypeNum = (member, type, number) => dispatch => {
   });
 };
 
-export const createPhotoTypeSelMemType = (member, type) => dispatch => {
+export const createPhotoInstance = photos => dispatch => {
   dispatch({
-    type: ACTION_TYPES.CREATE_PHOTO_TYPE_CURR_SELECTED_MEM_TYPE,
-    data: { member: member, type: type }
+    type: ACTION_TYPES.CREATE_PHOTO_INSTANCE,
+    data: photos
   });
 };
+
+export const createClear = () => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.CREATE_CLEAR,
+    data: null
+  });
+}

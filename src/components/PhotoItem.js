@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+import { type }from '../constants/type';
+import { members } from '../constants/member';
+import { photoClass } from "../constants/photoClass";
+
 import '../style/PhotoItem.css';
 
 export default class PhotoItem extends Component {
@@ -15,18 +19,25 @@ export default class PhotoItem extends Component {
 
   render() {
     const photo = this.props.photo;
+    const memberName = members.keyakizaka.find(item => {
+      return item.member_name_en === photo.photoMember
+    }).member_name;
+    
+    const costume = photoClass.find(item => {
+      return item.photo_id === photo.photoCostume
+    }).photo_name;
 
     return (
       <div className='photo-item-wrapper'>
-        <div className='photo-image'>{photo.photo_member[0]}</div>
+        <div className='photo-image'>{memberName[0]}</div>
         <div className='photo-data'>
           <div className='photo-data-meta'>
-          <h2 className={'photo-name ' + (this.getTextClass(photo.photo_member))}>{photo.photo_member}</h2>
-          <h2 className='photo-type'>{photo.photo_type}</h2>
-          <h3 className='photo-costume'>{photo.photo_costume}</h3>
+          <h2 className={'photo-name ' + (this.getTextClass(memberName))}>{memberName}</h2>
+          <h2 className='photo-type'>{type[photo.photoType].kanji}</h2>
+          <h3 className='photo-costume'>{costume}</h3>
           </div>
           <div className='photo-data-number'>
-            <h3>{photo.photo_number}</h3>
+            <h3>{photo.photoNumber}</h3>
           </div>
         </div>
       </div>
