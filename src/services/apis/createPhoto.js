@@ -1,6 +1,6 @@
 export const createPhoto = (group, costume, members, folder = "all") => {
   let payload = [];
-  const create_time = new Date().toLocaleString();
+  const create_time = (new Date).getTime();
   Object.entries(members).forEach(([member, data]) => {
     Object.entries(data.photoTypeNumber).forEach(([type, number]) => {
       const newPhoto = {
