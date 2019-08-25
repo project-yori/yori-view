@@ -3,6 +3,7 @@
   position: relative;
   top: 50px;
   overflow: auto;
+  padding: 0 0 65px 0;
 
   & .create-type-member-list-container{
     margin: 0 10px;

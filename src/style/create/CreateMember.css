@@ -2,6 +2,7 @@
   position: relative;
   top: 50px;
   height: calc(100vh - 50px - 60px);
+  padding: 0 0 65px 0;
   overflow: auto;
 
   & div.member-gen{
