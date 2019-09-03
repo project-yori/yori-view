@@ -10,5 +10,5 @@ export const type = {
   },
   suwari: {
     kanji: "座り"
-  },  
+  }
 };

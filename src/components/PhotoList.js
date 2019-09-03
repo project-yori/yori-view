@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 
 import PhotoItem from "./PhotoItem";
 
-import { getPhotos } from "../services/actions";
+import { getPhotos, displayPhotoModal } from "../services/actions";
 import { STORE_TYPES } from "../services/types";
 import "../style/PhotoList.css";
 
 const mapDispatchToProps = {
-  getPhotos
+  getPhotos,
+  displayPhotoModal
 };
 
 const mapStateToProps = state => {
@@ -55,6 +56,14 @@ class PhotoList extends Component {
       : [photoItem];
   };
 
+  handleClickPhotoItem = photoItem => {
+    this.props.displayPhotoModal(
+      photoItem.photoMember,
+      photoItem.photoCostume,
+      photoItem.photoType
+    );
+  };
+
   renderPhotoList = () => {
     const photoInts = [...this.props.photos];
     let photoItems = [];
@@ -62,7 +71,13 @@ class PhotoList extends Component {
       photoItems = this.countSameClassPhotoNum(photoInts);
     }
     const nodes = photoItems.map((photoItem, i) => {
-      return <PhotoItem photo={photoItem} key={`photo-item-${i}`} />;
+      return (
+        <PhotoItem
+          photo={photoItem}
+          key={`photo-item-${i}`}
+          onClick={() => this.handleClickPhotoItem(photoItem)}
+        />
+      );
     });
     return nodes;
   };

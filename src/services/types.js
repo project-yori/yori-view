@@ -9,22 +9,24 @@ export const ACTION_TYPES = {
   CREATE_PHOTO_DEL_MEMBER: "CREATE_PHOTO_DEL_MEMBER",
   CREATE_PHOTO_TYPE_NUMBER: "CREATE_PHOTO_TYPE_NUMBER",
   CREATE_PHOTO_INSTANCE: "CREATE_PHOTO_INSTANCE",
-  CREATE_CLEAR: "CREATE_CLEAR"
+  CREATE_CLEAR: "CREATE_CLEAR",
+  DISPLAY_PHOTO_MODAL: "DISPLAY_PHOTO_MODAL",
+  HIDE_PHOTO_MODAL: "HIDE_PHOTO_MODAL"
 };
 
 export const STORE_TYPES = {
   STATE: {
     TOP: {
       META: "top",
-      PHOTOS: "photos"
-    },
-    
+      PHOTOS: "photos",
+      PHOTO_MODAL: "photoModal"
+    },    
     CREATE: {
       META: "create",
       GROUP: "group",
       COSTUME: "costume",
       MEMBER: "member",
-    }
+    }    
   }
 };
 

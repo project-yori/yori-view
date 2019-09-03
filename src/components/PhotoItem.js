@@ -28,7 +28,7 @@ export default class PhotoItem extends Component {
     }).photo_name;
 
     return (
-      <div className='photo-item-wrapper'>
+      <div className='photo-item-wrapper' onClick={() => this.props.onClick()}>
         <div className='photo-image'>{memberName[0]}</div>
         <div className='photo-data'>
           <div className='photo-data-meta'>
