@@ -3,7 +3,8 @@ import { ACTION_TYPES, STORE_TYPES } from "./types";
 
 const initialState = {
   [STORE_TYPES.STATE.TOP.META]: {
-    [STORE_TYPES.STATE.TOP.PHOTOS]: []
+    [STORE_TYPES.STATE.TOP.PHOTOS]: [],
+    [STORE_TYPES.STATE.TOP.MODAL_PHOTO]: null
   },
   [STORE_TYPES.STATE.CREATE.META]: {
     [STORE_TYPES.STATE.CREATE.GROUP]: null,
@@ -23,6 +24,16 @@ const top = function(state = initialState.top, action) {
   switch (action.type) {
     case ACTION_TYPES.GET_PHOTOS:
       return setTopData(state, action);
+    case ACTION_TYPES.DISPLAY_PHOTO_MODAL:
+      return {
+        ...state,
+        [STORE_TYPES.STATE.TOP.PHOTO_MODAL]: action.data
+      };
+    case ACTION_TYPES.HIDE_PHOTO_MODAL:
+      return {
+        ...state,
+        [STORE_TYPES.STATE.TOP.PHOTO_MODAL]: null
+      }
     default:
       return state;
   }

@@ -36,8 +36,8 @@ export const getPhotos = () => dispatch => {
   //       reject(error);
   //     });
   // });
-  const photos = JSON.parse(localStorage.getItem('yori-photo'));
-  if(photos !== null){
+  const photos = JSON.parse(localStorage.getItem("yori-photo"));
+  if (photos !== null) {
     dispatch({
       type: ACTION_TYPES.GET_PHOTOS,
       data: photos
@@ -92,4 +92,18 @@ export const createClear = () => dispatch => {
     type: ACTION_TYPES.CREATE_CLEAR,
     data: null
   });
-}
+};
+
+export const displayPhotoModal = (member, costume, type) => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.DISPLAY_PHOTO_MODAL,
+    data: { photo_member: member, photo_costume: costume, photo_type: type }
+  });
+};
+
+export const hidePhotoModal = () => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.HIDE_PHOTO_MODAL,
+    data: null
+  });
+};

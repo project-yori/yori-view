@@ -1,0 +1,20 @@
+.photo-modal-dimmed-view {
+  display: none;
+}
+.photo-modal-dimmed-view.show {
+  display: flex;
+  position: relative;
+  height: calc(100% + 50px + 50px);
+  top: -50px;
+  z-index: 2;
+  background-color: #000b;
+}
+.photo-modal-container {
+  margin: auto;
+  height: 50%;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px 4px #222;
+  z-index: 3;
+}
