@@ -55,14 +55,6 @@ class PhotoList extends Component {
       : [photoItem];
   };
 
-  handleClickPhotoItem = photoItem => {
-    this.props.displayPhotoModal(
-      photoItem.photoMember,
-      photoItem.photoCostume,
-      photoItem.photoType
-    );
-  };
-
   renderPhotoList = () => {
     const photoInts = [...this.props.photos];
     let photoItems = [];
