@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { ACTION_TYPES, STORE_TYPES } from "./types";
+import { editPhoto } from "./apis/editPhoto";
 
 const initialState = {
   [STORE_TYPES.STATE.TOP.META]: {
@@ -33,17 +34,40 @@ const top = function(state = initialState.top, action) {
       return {
         ...state,
         [STORE_TYPES.STATE.TOP.PHOTO_MODAL]: null
-      }
+      };
+    case ACTION_TYPES.EDIT_PHOTO_NUMBER:
+      return editPhotoNumber(state, action);
     default:
       return state;
   }
 };
 const postPhotoInstances = function(photos) {
-  const data = window.localStorage['yori-photo']
-    ? JSON.parse(window.localStorage.getItem('yori-photo'))
-    : []
-  ;
-  window.localStorage.setItem("yori-photo", JSON.stringify([...photos, ...data]));
+  const data = window.localStorage["yori-photo"]
+    ? JSON.parse(window.localStorage.getItem("yori-photo"))
+    : [];
+  window.localStorage.setItem(
+    "yori-photo",
+    JSON.stringify([...photos, ...data])
+  );
+};
+const putPhotoInstances = function(photos) {
+  window.localStorage.setItem(
+    "yori-photo",
+    JSON.stringify([...photos])
+  );
+};
+
+const editPhotoNumber = function(state, action) {
+  const { photos } = state;
+  const photoToEdit = { ...action.data };
+  const photosAfterEdit = editPhoto(photos, photoToEdit)
+  putPhotoInstances(photosAfterEdit);
+  return {
+    ...state,
+    [STORE_TYPES.STATE.TOP.PHOTOS]: [
+      ...photosAfterEdit
+    ]
+  };
 };
 
 const create = function(state = initialState.create, action) {
@@ -108,7 +132,7 @@ const create = function(state = initialState.create, action) {
         [STORE_TYPES.STATE.CREATE.GROUP]: null,
         [STORE_TYPES.STATE.CREATE.COSTUME]: null,
         [STORE_TYPES.STATE.CREATE.MEMBER]: {}
-      }
+      };
     default:
       return state;
   }

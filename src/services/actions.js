@@ -107,3 +107,10 @@ export const hidePhotoModal = () => dispatch => {
     data: null
   });
 };
+
+export const editPhotoNumber = (photoToEdit) => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.EDIT_PHOTO_NUMBER,
+    data: photoToEdit
+  });
+};

@@ -18,3 +18,20 @@
   box-shadow: 0px 5px 5px 4px #222;
   z-index: 3;
 }
+.photo-modal-number-container{
+  display: flex;
+  height: 2em;
+  & h3{
+    margin: auto;
+    display: inline-block;
+    line-height: 1em;
+  }
+}
+.photo-modal-number-button{
+  margin: auto 20px;
+  padding: 0;
+  font-size: 1em;
+  line-height: 1em;
+  background-color: transparent;
+  border: none;  
+}
