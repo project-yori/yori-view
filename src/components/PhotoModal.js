@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { ExposurePlus1, ExposureNeg1 } from "@material-ui/icons";
 
-import { hidePhotoModal } from "../services/actions";
+import { hidePhotoModal, editPhotoNumber } from "../services/actions";
 import { members } from "../constants/member";
 import { photoClass } from "../constants/photoClass";
 import { type } from "../constants/type";
@@ -16,10 +17,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  hidePhotoModal
+  hidePhotoModal,
+  editPhotoNumber
 };
 
-const renderPhotoModalContents = (photoModal, photos) => {
+const renderPhotoModalContents = (photoModal, photos, editPhotoNumber, hidePhotoModal) => {
   if (photoModal === null) return null;
 
   const memberName = members.keyakizaka.find(member => {
@@ -44,12 +46,43 @@ const renderPhotoModalContents = (photoModal, photos) => {
       <h2>{memberName}</h2>
       <h3>{costumeName}</h3>
       <h3>{type[photoModal.photo_type].kanji}</h3>
-      <h3>{`${photoNumber} 枚`}</h3>
+      <div className="photo-modal-number-container">
+        <button
+          className="photo-modal-number-button"
+          onClick={() =>
+            handleClickPhotoNumberButton(
+              { ...photoModal, photo_number: photoNumber - 1 },
+              editPhotoNumber,
+              hidePhotoModal
+            )
+          }
+        >
+          <ExposureNeg1 />
+        </button>
+        <h3>{`${photoNumber} 枚`}</h3>
+        <button
+          className="photo-modal-number-button"
+          onClick={() =>
+            handleClickPhotoNumberButton(
+              { ...photoModal, photo_number: photoNumber + 1 },
+              editPhotoNumber,
+              hidePhotoModal
+            )
+          }
+        >
+          <ExposurePlus1 />
+        </button>
+      </div>
     </div>
   );
 };
 
-const PhotoModal = ({ photos, photoModal, hidePhotoModal }) => {
+const handleClickPhotoNumberButton = (photo, editPhotoNumber, hidePhotoModal) => {
+  editPhotoNumber(photo);
+  if (photo.photo_number === 0) hidePhotoModal();  
+};
+
+const PhotoModal = ({ photos, photoModal, hidePhotoModal, editPhotoNumber }) => {
   return (
     <div
       className={
@@ -57,9 +90,12 @@ const PhotoModal = ({ photos, photoModal, hidePhotoModal }) => {
           ? "photo-modal-dimmed-view"
           : "photo-modal-dimmed-view show"
       }
-      onClick={() => hidePhotoModal()}
+      onClick={event => {
+        if (/photo-modal-dimmed-view/.exec(event.target.className) !== null)
+          hidePhotoModal();
+      }}
     >
-      {renderPhotoModalContents(photoModal, photos)}
+      {renderPhotoModalContents(photoModal, photos, editPhotoNumber, hidePhotoModal)}
     </div>
   );
 };
