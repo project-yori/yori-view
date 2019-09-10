@@ -8,13 +8,13 @@ export default class Header extends Component {
     return (
       <header>
         <div className='button-wrapper'>
-          <button><FolderOpen /></button>
+          <span></span>
         </div>
         <div className='header-wrapper'>
           <h2>{this.props.children}</h2>
         </div>
         <div className='button-wrapper'>
-          <button><Settings /></button>
+          <span></span>
         </div>
       </header>
     )
