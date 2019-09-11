@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 
 import Header from './Header';
 import PhotoList from './PhotoList';
@@ -8,31 +9,15 @@ import ActionSheet from './ActionSheet';
 import Footer from './Footer';
 
 export default class PhotoListView extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      showActionSheet: false,
-    };
-  }
-  showActionSheet = () => {
-    this.setState(prevState => ({showActionSheet: !prevState.showActionSheet}))
-  };
-
   render() {
     return (
       <div className='photo-list-view'>
-        <Header>ALBUM_NAME</Header>
+        <Header>YORI</Header>
         <PhotoList />
         <PhotoModal />
-        <CreateFloatPlusButton showActionSheet={this.showActionSheet}/>
-        <div 
-          className={this.state.showActionSheet ? 'dimmed-view show' : 'dimmed-view'}
-          onClick={() => this.showActionSheet()}
-        />
-        <ActionSheet 
-          isShow={this.state.showActionSheet}
-          showActionSheet={this.showActionSheet}
-        />
+        <Link to="/create/group">
+          <CreateFloatPlusButton />
+        </Link>
         <Footer />
       </div>
     )
