@@ -13,7 +13,7 @@ export const ACTION_TYPES = {
   DISPLAY_PHOTO_MODAL: "DISPLAY_PHOTO_MODAL",
   HIDE_PHOTO_MODAL: "HIDE_PHOTO_MODAL",
   EDIT_PHOTO_NUMBER: "EDIT_PHOTO_NUMBER",
-  CHANGE_SORT: "CHANGE_SORT"
+  CHANGE_SORT_TYPE: "CHANGE_SORT_TYPE"
 };
 
 export const STORE_TYPES = {
@@ -22,7 +22,7 @@ export const STORE_TYPES = {
       META: "top",
       PHOTOS: "photos",
       PHOTO_MODAL: "photoModal",
-      SORT: "sort"
+      SORT_TYPE: "sortType"
     },
     CREATE: {
       META: "create",

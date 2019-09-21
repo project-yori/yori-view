@@ -108,9 +108,16 @@ export const hidePhotoModal = () => dispatch => {
   });
 };
 
-export const editPhotoNumber = (photoToEdit) => dispatch => {
+export const editPhotoNumber = photoToEdit => dispatch => {
   dispatch({
     type: ACTION_TYPES.EDIT_PHOTO_NUMBER,
     data: photoToEdit
+  });
+};
+
+export const changeSortType = sortType => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.CHANGE_SORT_TYPE,
+    data: sortType
   });
 };

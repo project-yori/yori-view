@@ -16,8 +16,8 @@ const mapStateToProps = state => {
   return {
     [STORE_TYPES.STATE.TOP.PHOTOS]:
       state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.PHOTOS],
-    [STORE_TYPES.STATE.TOP.SORT]:
-      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.SORT]
+    [STORE_TYPES.STATE.TOP.SORT_TYPE]:
+      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.SORT_TYPE]
   };
 };
 
@@ -74,8 +74,7 @@ class PhotoList extends Component {
     if (photoInts.length !== 0) {
       photoItems = this.countSameClassPhotoNum(photoInts);
     }
-    console.log(photoItems);
-    sort(photoItems, this.props.sort);
+    sort(photoItems, this.props.sortType);
     const nodes = photoItems.map((photoItem, i) => {
       return <PhotoItem photo={photoItem} key={`photo-item-${i}`} />;
     });
