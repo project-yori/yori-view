@@ -1,7 +1,12 @@
-body, html{
+body,
+html {
   font-size: 14;
   background-color: #fff;
   -webkit-tap-highlight-color: transparent;
+}
+button,
+input {
+  touch-action: manipulation;
 }
 
 .App {
@@ -9,7 +14,7 @@ body, html{
   text-align: center;
 }
 
-.main-button-container{
+.main-button-container {
   padding: 10px 15px;
   /* margin: 10px 15px; */
   position: fixed;
@@ -20,33 +25,32 @@ body, html{
   background-color: #fff;
 }
 
-.main-button{
+.main-button {
   position: relative;
   bottom: 0;
   margin: 0;
   border: solid 1px #000;
   border-radius: 5px;
-  width: calc((100vw - 30px - 10px) /2);
+  width: calc((100vw - 30px - 10px) / 2);
   background-color: #fff;
   font-size: 1.2em;
   height: 45px;
 
-  &:active{
+  &:active {
     background-color: #fff;
   }
 
-  &.next{
+  &.next {
     background-color: #147efb;
     color: #fff;
   }
 
-  &.disabled{
+  &.disabled {
     border-color: #999;
-    color: #999;  
-    
+    color: #999;
   }
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 }
