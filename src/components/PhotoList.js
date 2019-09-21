@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import PhotoItem from "./PhotoItem";
 
+import { sort } from "../services/apis/sort";
 import { getPhotos } from "../services/actions";
 import { STORE_TYPES } from "../services/types";
 import "../style/PhotoList.css";
@@ -14,7 +15,9 @@ const mapDispatchToProps = {
 const mapStateToProps = state => {
   return {
     [STORE_TYPES.STATE.TOP.PHOTOS]:
-      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.PHOTOS]
+      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.PHOTOS],
+    [STORE_TYPES.STATE.TOP.SORT]:
+      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.SORT]
   };
 };
 
@@ -36,7 +39,11 @@ class PhotoList extends Component {
       photoMember: thisInt.photo_member,
       photoCostume: thisInt.photo_costume,
       photoType: thisInt.photo_type,
-      photoNumber: 1
+      photoNumber: 1,
+      photoCreateTime: thisInt.photo_create_time,
+      photoUpdateTime: thisInt.hasOwnProperty("photo_update_time")
+        ? thisInt.photo_update_time
+        : 0
     };
     const restPhotoInts = [];
     photoInts.forEach(photoInt => {
@@ -48,6 +55,12 @@ class PhotoList extends Component {
         restPhotoInts.push(photoInt);
       } else {
         photoItem.photoNumber++;
+        photoItem.photoCreateTime = Math.max(
+          photoInt.photo_create_time,
+          photoItem.photoCreateTime
+        );
+        if (photoInt.photo_update_time > photoItem.photoUpdateTime)
+          photoItem.photoUpdateTime = photoInt.photo_update_time;
       }
     });
     return restPhotoInts.length !== 0
@@ -61,9 +74,12 @@ class PhotoList extends Component {
     if (photoInts.length !== 0) {
       photoItems = this.countSameClassPhotoNum(photoInts);
     }
+    console.log(photoItems);
+    sort(photoItems, this.props.sort);
     const nodes = photoItems.map((photoItem, i) => {
       return <PhotoItem photo={photoItem} key={`photo-item-${i}`} />;
     });
+
     return nodes;
   };
 

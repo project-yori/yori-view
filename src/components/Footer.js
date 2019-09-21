@@ -1,24 +1,31 @@
-import React, { Component } from 'react'
-import { Face, CameraFront, Search } from '@material-ui/icons';
+import React, { Component } from "react";
+import { Face, CameraFront, AccessTime } from "@material-ui/icons";
 
-import '../style/Footer.css';
+import "../style/Footer.css";
 
 export default class Footer extends Component {
   render() {
     return (
       <footer>
-        <div className='button-wrapper'>
-          <button className='member'>
+        <div className="button-wrapper">
+          <button className="member">
             <Face />
-            メンバー</button>
+            メンバー順
+          </button>
         </div>
-        <div className='button-wrapper'>
-          <button className='costume'><CameraFront />テーマ</button>
+        <div className="button-wrapper">
+          <button className="costume">
+            <CameraFront />
+            テーマ順
+          </button>
         </div>
-        <div className='button-wrapper'>
-          <button className='search'><Search />検索</button>
+        <div className="button-wrapper">
+          <button className="search">
+            <AccessTime />
+            登録順
+          </button>
         </div>
       </footer>
-    )
+    );
   }
 }
