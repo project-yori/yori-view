@@ -1,17 +1,15 @@
 import { SORT_TYPES } from "../types";
 import { members } from "../../constants/member";
+import { photoClass } from "../../constants/photoClass";
 
 export const sort = (list, sortType) => {
-  console.log(list);
-
   switch (sortType) {
     case SORT_TYPES.CREATE_TIME:
       return list.sort(sortByCreateTime);
     case SORT_TYPES.MEMBER:
       return list.sort(sortByMember);
     case SORT_TYPES.COSTUME:
-      // TODO: waiting for costume release date data
-      return list;
+      return list.sort(sortByCostume);
     default:
       break;
   }
@@ -38,4 +36,27 @@ const sortByMember = (itemA, itemB) => {
   return 0;
 };
 
-const sortByCostume = (itemA, itemB) => {};
+const sortByCostume = (itemA, itemB) => {
+  const itemAPhoto = photoClass.find(photo => {
+    return photo.photo_id === itemA.photoCostume;
+  });
+  const itemBPhoto = photoClass.find(photo => {
+    return photo.photo_id === itemB.photoCostume;
+  });
+  if (itemAPhoto.photo_release_index > itemBPhoto.photo_release_index) return 1;
+  if (itemAPhoto.photo_release_index < itemBPhoto.photo_release_index)
+    return -1;
+
+  // If same costume, sort by member
+  const itemAMember = members.keyakizaka.find(member => {
+    return member.member_name_en === itemA.photoMember;
+  });
+  const itemBMember = members.keyakizaka.find(member => {
+    return member.member_name_en === itemB.photoMember;
+  });
+  if (itemAMember.member_name_gana[0] > itemBMember.member_name_gana[0])
+    return 1;
+  if (itemAMember.member_name_gana[0] < itemBMember.member_name_gana[0])
+    return -1;
+  return 0;
+};
