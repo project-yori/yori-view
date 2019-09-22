@@ -75,6 +75,8 @@ class PhotoList extends Component {
       photoItems = this.countSameClassPhotoNum(photoInts);
     }
     sort(photoItems, this.props.sortType);
+    console.log(photoItems);
+
     const nodes = photoItems.map((photoItem, i) => {
       return <PhotoItem photo={photoItem} key={`photo-item-${i}`} />;
     });

@@ -35,8 +35,11 @@ export const STORE_TYPES = {
 
 export const SORT_TYPES = {
   CREATE_TIME: "createTime",
+  CREATE_TIME_REVERSE: "createTimeReverse",
   MEMBER: "member",
-  COSTUME: "costume"
+  MEMBER_REVERSE: "memberReverse",
+  COSTUME: "costume",
+  COSTUME_REVERSE: "costumeReverse"
 };
 
 export const END_POINTS = {

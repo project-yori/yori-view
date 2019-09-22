@@ -5,19 +5,32 @@ import { SORT_TYPES } from "../services/types";
 import { Face, CameraFront, AccessTime } from "@material-ui/icons";
 
 import "../style/Footer.css";
+import { sort } from "../services/apis/sort";
+
+const mapStateToProps = state => {
+  const { sortType } = state.top;
+  return {
+    sortType
+  };
+};
 
 const mapDispatchToProps = {
   changeSortType
 };
 
 class Footer extends Component {
+  handleClickSort = sortType => {
+    const newSortType =
+      sortType === this.props.sortType ? sortType + "Reverse" : sortType;
+    this.props.changeSortType(newSortType);
+  };
   render() {
     return (
       <footer>
         <div className="button-wrapper">
           <button
             className="member"
-            onClick={() => this.props.changeSortType(SORT_TYPES.MEMBER)}
+            onClick={() => this.handleClickSort("member")}
           >
             <Face />
             メンバー順
@@ -26,7 +39,7 @@ class Footer extends Component {
         <div className="button-wrapper">
           <button
             className="costume"
-            onClick={() => this.props.changeSortType(SORT_TYPES.COSTUME)}
+            onClick={() => this.handleClickSort("costume")}
           >
             <CameraFront />
             テーマ順
@@ -34,8 +47,8 @@ class Footer extends Component {
         </div>
         <div className="button-wrapper">
           <button
-            className="search"
-            onClick={() => this.props.changeSortType(SORT_TYPES.CREATE_TIME)}
+            className="createTime"
+            onClick={() => this.handleClickSort("createTime")}
           >
             <AccessTime />
             登録順
@@ -47,6 +60,6 @@ class Footer extends Component {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Footer);

@@ -6,10 +6,16 @@ export const sort = (list, sortType) => {
   switch (sortType) {
     case SORT_TYPES.CREATE_TIME:
       return list.sort(sortByCreateTime);
+    case SORT_TYPES.CREATE_TIME_REVERSE:
+      return list.sort(sortByCreateTime).reverse();
     case SORT_TYPES.MEMBER:
       return list.sort(sortByMember);
+    case SORT_TYPES.MEMBER_REVERSE:
+      return list.sort(sortByMember).reverse();
     case SORT_TYPES.COSTUME:
       return list.sort(sortByCostume);
+    case SORT_TYPES.COSTUME_REVERSE:
+      return list.sort(sortByCostume).reverse();
     default:
       break;
   }
