@@ -12,7 +12,8 @@ export const ACTION_TYPES = {
   CREATE_CLEAR: "CREATE_CLEAR",
   DISPLAY_PHOTO_MODAL: "DISPLAY_PHOTO_MODAL",
   HIDE_PHOTO_MODAL: "HIDE_PHOTO_MODAL",
-  EDIT_PHOTO_NUMBER: "EDIT_PHOTO_NUMBER"
+  EDIT_PHOTO_NUMBER: "EDIT_PHOTO_NUMBER",
+  CHANGE_SORT_TYPE: "CHANGE_SORT_TYPE"
 };
 
 export const STORE_TYPES = {
@@ -20,15 +21,25 @@ export const STORE_TYPES = {
     TOP: {
       META: "top",
       PHOTOS: "photos",
-      PHOTO_MODAL: "photoModal"
-    },    
+      PHOTO_MODAL: "photoModal",
+      SORT_TYPE: "sortType"
+    },
     CREATE: {
       META: "create",
       GROUP: "group",
       COSTUME: "costume",
-      MEMBER: "member",
-    }    
+      MEMBER: "member"
+    }
   }
+};
+
+export const SORT_TYPES = {
+  CREATE_TIME: "createTime",
+  CREATE_TIME_REVERSE: "createTimeReverse",
+  MEMBER: "member",
+  MEMBER_REVERSE: "memberReverse",
+  COSTUME: "costume",
+  COSTUME_REVERSE: "costumeReverse"
 };
 
 export const END_POINTS = {
