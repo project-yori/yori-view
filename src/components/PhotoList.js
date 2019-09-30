@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PhotoItem from "./PhotoItem";
 
 import { sort } from "../services/apis/sort";
+import { search } from "../services/apis/search";
 import { getPhotos } from "../services/actions";
 import { STORE_TYPES } from "../services/types";
 import "../style/PhotoList.css";
@@ -17,7 +18,9 @@ const mapStateToProps = state => {
     [STORE_TYPES.STATE.TOP.PHOTOS]:
       state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.PHOTOS],
     [STORE_TYPES.STATE.TOP.SORT_TYPE]:
-      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.SORT_TYPE]
+      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.SORT_TYPE],
+    [STORE_TYPES.STATE.TOP.KEYWORD_SEARCH]:
+      state[STORE_TYPES.STATE.TOP.META][STORE_TYPES.STATE.TOP.KEYWORD_SEARCH]
   };
 };
 
@@ -69,7 +72,10 @@ class PhotoList extends Component {
   };
 
   renderPhotoList = () => {
-    const photoInts = [...this.props.photos];
+    const photoInts =
+      this.props.keywordSearch === ""
+        ? [...this.props.photos]
+        : search([...this.props.photos], this.props.keywordSearch);
     let photoItems = [];
     if (photoInts.length !== 0) {
       photoItems = this.countSameClassPhotoNum(photoInts);

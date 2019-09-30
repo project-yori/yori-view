@@ -121,3 +121,10 @@ export const changeSortType = sortType => dispatch => {
     data: sortType
   });
 };
+
+export const searchPhoto = keywordSearch => dispatch => {
+  dispatch({
+    type: ACTION_TYPES.SEARCH_PHOTO,
+    data: keywordSearch
+  });
+};

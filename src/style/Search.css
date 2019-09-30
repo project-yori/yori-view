@@ -1,0 +1,20 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+}
+.search-container input {
+  margin: auto;
+  padding: 0 5px;
+  width: calc(100vw - 20px - 10px);
+  height: 30px;
+  background-color: #eee;
+  border: none;
+  font-size: 1em;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
