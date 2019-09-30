@@ -3,6 +3,7 @@
   justify-content: center;
   position: relative;
   top: 50px;
+  z-index: 0;
 }
 .search-container input {
   margin: auto;
