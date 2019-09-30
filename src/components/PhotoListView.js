@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Header from "./Header";
+import Search from "./Search";
 import PhotoList from "./PhotoList";
 import PhotoModal from "./PhotoModal";
 import CreateFloatPlusButton from "./create/CreateFloatPlusButton";
@@ -11,6 +12,7 @@ export default class PhotoListView extends Component {
     return (
       <div className="photo-list-view">
         <Header>YORI</Header>
+        <Search />
         <PhotoList />
         <PhotoModal />
         <CreateFloatPlusButton />

@@ -6,7 +6,8 @@ const initialState = {
   [STORE_TYPES.STATE.TOP.META]: {
     [STORE_TYPES.STATE.TOP.PHOTOS]: [],
     [STORE_TYPES.STATE.TOP.MODAL_PHOTO]: null,
-    [STORE_TYPES.STATE.TOP.SORT_TYPE]: SORT_TYPES.CREATE_TIME
+    [STORE_TYPES.STATE.TOP.SORT_TYPE]: SORT_TYPES.CREATE_TIME,
+    [STORE_TYPES.STATE.TOP.KEYWORD_SEARCH]: ""
   },
   [STORE_TYPES.STATE.CREATE.META]: {
     [STORE_TYPES.STATE.CREATE.GROUP]: null,
@@ -42,6 +43,11 @@ const top = function(state = initialState.top, action) {
       return {
         ...state,
         [STORE_TYPES.STATE.TOP.SORT_TYPE]: action.data
+      };
+    case ACTION_TYPES.SEARCH_PHOTO:
+      return {
+        ...state,
+        [STORE_TYPES.STATE.TOP.KEYWORD_SEARCH]: action.data
       };
     default:
       return state;
