@@ -2,10 +2,10 @@ import { members } from "../../constants/member";
 import { photoClass } from "../../constants/photoClass";
 
 export const search = (photoInts, keyword) => {
-  const keywordRegexp = new RegExp(keyword);
+  const keywordRegexp = new RegExp(keyword.toLowerCase());
   return photoInts.filter(photoInt => {
     return (
-      keywordRegexp.exec(photoInt.photo_member) !== null || // En
+      keywordRegexp.exec(photoInt.photo_member.toLowerCase()) !== null || // En
       keywordRegexp.exec(
         members.keyakizaka.find(
           member => member.member_name_en === photoInt.photo_member
@@ -17,8 +17,9 @@ export const search = (photoInts, keyword) => {
         ).member_name_gana // Gana
       ) !== null ||
       keywordRegexp.exec(
-        photoClass.find(photoCl => photoCl.photo_id === photoInt.photo_costume) //Costume
-          .photo_name
+        photoClass
+          .find(photoCl => photoCl.photo_id === photoInt.photo_costume) //Costume
+          .photo_name.toLowerCase()
       ) !== null
     );
   });
