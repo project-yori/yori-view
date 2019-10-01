@@ -11,5 +11,9 @@
     margin: 50px 0;
     height: calc(100vh - 50px - 50px);
     background-color: #fff;
+
+    & > div > div:last-child {
+      margin-bottom: 130px;
+    }
   }
 }
