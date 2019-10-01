@@ -86,7 +86,6 @@
 .photo-item-swipe-del-div {
   display: grid;
   grid-template-columns: 80% 20%;
-  /* padding-right: 30px; */
   font-weight: 700;
   height: 100%;
   width: 100%;
