@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {
+  SwipeableList,
+  SwipeableListItem
+} from "@sandstreamdev/react-swipeable-list";
+import "@sandstreamdev/react-swipeable-list/dist/styles.css";
 
 import PhotoItem from "./PhotoItem";
 
 import { sort } from "../services/apis/sort";
 import { search } from "../services/apis/search";
-import { getPhotos } from "../services/actions";
+import { getPhotos, editPhotoNumber } from "../services/actions";
 import { STORE_TYPES } from "../services/types";
 import "../style/PhotoList.css";
 
 const mapDispatchToProps = {
-  getPhotos
+  getPhotos,
+  editPhotoNumber
 };
 
 const mapStateToProps = state => {
@@ -82,14 +88,39 @@ class PhotoList extends Component {
     }
     sort(photoItems, this.props.sortType);
     const nodes = photoItems.map((photoItem, i) => {
-      return <PhotoItem photo={photoItem} key={`photo-item-${i}`} />;
+      return (
+        <SwipeableListItem
+          key={`photo-item-${i}`}
+          swipeLeft={{
+            content: (
+              <div className="photo-item-swipe-del-div">
+                <span></span>
+                <h3>削除</h3>
+              </div>
+            ),
+            action: () =>
+              this.props.editPhotoNumber({
+                photo_member: photoItem.photoMember,
+                photo_costume: photoItem.photoCostume,
+                photo_type: photoItem.photoType,
+                photo_number: 0
+              })
+          }}
+        >
+          <PhotoItem photo={photoItem} />
+        </SwipeableListItem>
+      );
     });
 
     return nodes;
   };
 
   render() {
-    return <div className="photo-list-wrapper">{this.renderPhotoList()}</div>;
+    return (
+      <div className="photo-list-wrapper">
+        <SwipeableList>{this.renderPhotoList()}</SwipeableList>
+      </div>
+    );
   }
 }
 

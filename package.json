@@ -6,6 +6,7 @@
     "@babel/core": "7.4.3",
     "@material-ui/core": "^4.1.3",
     "@material-ui/icons": "^4.2.1",
+    "@sandstreamdev/react-swipeable-list": "^0.2.1",
     "@svgr/webpack": "4.1.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
@@ -57,6 +58,7 @@
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
+    "serve": "11.1.0",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.2.3",
     "ts-pnp": "1.1.2",
@@ -65,8 +67,7 @@
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.0.4",
     "whatwg-fetch": "^3.0.0",
-    "workbox-webpack-plugin": "4.2.0",
-    "serve": "11.1.0"
+    "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
