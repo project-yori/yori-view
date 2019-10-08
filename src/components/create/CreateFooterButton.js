@@ -7,49 +7,52 @@
  *   clickAction:func : function triggered by tapping NEXT button
  */
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import '../../style/create/CreateFooterButton.css';
+import "../../style/create/CreateFooterButton.css";
 
 export default class CreateFooterButton extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-    
-    };
-  };
-  
-  render () {
+    this.state = {};
+  }
+
+  render() {
     return (
-      <div className='create-footer-button-container'>
+      <div className="create-footer-button-container">
         <Link to={this.props.prevPage}>
-          <button className='create-footer-button'>{this.props.children[0]}</button>          
+          <button className="create-footer-button">
+            {this.props.children[0]}
+          </button>
         </Link>
         <Link to={this.props.nextPage}>
           <button
             disabled={!this.props.enableNext}
-            className={this.props.enableNext ?
-              'create-footer-button next' :
-              'create-footer-button disabled'
+            className={
+              this.props.enableNext
+                ? "create-footer-button next"
+                : "create-footer-button disabled"
             }
-            onClick={() => this.props.clickAction()}
+            onClick={() => this.props.clickNextAction()}
           >
             {this.props.children[1]}
           </button>
         </Link>
       </div>
     );
-  };
-};
+  }
+}
 
 CreateFooterButton.defaultProps = {
-  prevPage: '/',
-  nextPage: '/',
-  enableNext: false,  
-  clickAction: () => { return }
-}
+  prevPage: "/",
+  nextPage: "/",
+  enableNext: false,
+  clickNextAction: () => {
+    return;
+  }
+};
 
 CreateFooterButton.propTypes = {
   prevPage: PropTypes.string,

@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { createPhotosGroup, createPhotosCostume } from "../../services/actions";
+import {
+  createPhotosGroup,
+  createPhotosCostume,
+  createPhotosDelMember
+} from "../../services/actions";
 import { STORE_TYPES } from "../../services/types";
 import { photoClass } from "../../constants/photoClass";
 
@@ -14,13 +18,16 @@ const mapStateToProps = state => {
     [STORE_TYPES.STATE.CREATE.GROUP]:
       state[STORE_TYPES.STATE.CREATE.META][STORE_TYPES.STATE.CREATE.GROUP],
     [STORE_TYPES.STATE.CREATE.COSTUME]:
-      state[STORE_TYPES.STATE.CREATE.META][STORE_TYPES.STATE.CREATE.COSTUME]
+      state[STORE_TYPES.STATE.CREATE.META][STORE_TYPES.STATE.CREATE.COSTUME],
+    [STORE_TYPES.STATE.CREATE.MEMBER]:
+      state[STORE_TYPES.STATE.CREATE.META][STORE_TYPES.STATE.CREATE.MEMBER]
   };
 };
 
 const mapDispatchToProps = {
   createPhotosGroup,
-  createPhotosCostume
+  createPhotosCostume,
+  createPhotosDelMember
 };
 
 class CreateGroup extends Component {
@@ -29,6 +36,10 @@ class CreateGroup extends Component {
   };
 
   handleSelectCos = event => {
+    // Clear member in store
+    Object.entries({ ...this.props.member }).forEach(([key, value]) => {
+      this.props.createPhotosDelMember(key);
+    });
     this.props.createPhotosCostume(event.target.value);
   };
 
