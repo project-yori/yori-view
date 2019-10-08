@@ -70,7 +70,9 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "postinstall": "npm run build",
+    "start": "serve -l 8080 -s build",
+    "develop": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "ci-test": "CI=true node scripts/test.js"
