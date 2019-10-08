@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { getPhotos } from '../services/actions';
-import { STORE_TYPES } from '../services/types';
+import { getPhotos } from "../services/actions";
+import { STORE_TYPES } from "../services/types";
 
-import PhotoListView from './PhotoListView';
-import CreateView from './create/CreateView';
-import '../style/App.css';
+import PhotoListView from "./PhotoListView";
+import CreateView from "./create/CreateView";
+import "../style/App.css";
 
 class App extends React.Component {
   static propTypes = {
@@ -27,9 +27,9 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className='App'>
-          <Route exact path='/' component={PhotoListView} />
-          <Route path='/create' component={CreateView} />
+        <div className="App">
+          <Route exact path="/" component={PhotoListView} />
+          <Route path="/create" component={CreateView} />
         </div>
       </Router>
     );
