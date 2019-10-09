@@ -38,21 +38,18 @@ class CreateMember extends Component {
       photoSelected === undefined ? "PHOTO_COSTUME" : photoSelected.photo_name;
     return <h3>{title}</h3>;
   };
-  
+
   handleClickMember = member => {
-    const isInstore = this.props.member.hasOwnProperty(
-      member.member_name_en
-    );
-    if (isInstore)
-      this.props.createPhotosDelMember(member.member_name_en);
+    const isInstore = this.props.member.hasOwnProperty(member.member_name_en);
+    if (isInstore) this.props.createPhotosDelMember(member.member_name_en);
     else this.props.createPhotosAddMember(member.member_name_en);
-  }
+  };
 
   renderMemUl = members => {
     const liNodes = members.map((member, i) => {
       return (
         <CreateCircleSelectButton
-          id='member'
+          id="member"
           key={`member-${i}`}
           enable={this.props.member.hasOwnProperty(member.member_name_en)}
           clickAction={() => this.handleClickMember(member)}

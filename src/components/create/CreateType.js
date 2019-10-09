@@ -173,7 +173,7 @@ export class CreateType extends Component {
           prevPage="/create/member"
           nextPage="/"
           enableNext={!this.isNextStepBtnDisabled()}
-          clickAction={this.handleClickNextBtn}
+          clickNextAction={this.handleClickNextBtn}
         >
           {"もどる"}
           {"登録"}
