@@ -1,8 +1,8 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: "[BUG][VERSION][COMPONENT] CONTEXT "
-labels: ''
+title: "[BUG][PLATFORM][COMPONENT] CONTEXT "
+labels: bug
 assignees: ''
 
 ---
