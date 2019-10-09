@@ -10,9 +10,14 @@ import PhotoItem from "./PhotoItem";
 
 import { sort } from "../services/apis/sort";
 import { search } from "../services/apis/search";
+import { convertString } from "../services/apis/convertString";
 import { getPhotos, editPhotoNumber } from "../services/actions";
 import { STORE_TYPES } from "../services/types";
+import { STRING } from "../constants/strings";
 import "../style/PhotoList.css";
+import { members } from "../constants/member";
+import { photoClass } from "../constants/photoClass";
+import { type } from "../constants/type";
 
 const mapDispatchToProps = {
   getPhotos,
@@ -98,13 +103,28 @@ class PhotoList extends Component {
                 <h3>削除</h3>
               </div>
             ),
-            action: () =>
-              this.props.editPhotoNumber({
-                photo_member: photoItem.photoMember,
-                photo_costume: photoItem.photoCostume,
-                photo_type: photoItem.photoType,
-                photo_number: 0
-              })
+            action: () => {
+              const confirmDelete = window.confirm(
+                convertString(STRING.DELETE_PHOTO_COMFIRM_DIALOG, {
+                  member: members.keyakizaka.find(
+                    member => member.member_name_en === photoItem.photoMember
+                  ).member_name,
+                  costume: photoClass.find(
+                    photoCl => photoCl.photo_id === photoItem.photoCostume
+                  ).photo_name,
+                  type: type[photoItem.photoType].kanji,
+                  number: photoItem.photoNumber
+                })
+              );
+              if (confirmDelete === true) {
+                this.props.editPhotoNumber({
+                  photo_member: photoItem.photoMember,
+                  photo_costume: photoItem.photoCostume,
+                  photo_type: photoItem.photoType,
+                  photo_number: 0
+                });
+              }
+            }
           }}
         >
           <PhotoItem photo={photoItem} />
