@@ -1,8 +1,11 @@
 import { members } from "../../constants/member";
 import { photoClass } from "../../constants/photoClass";
+import { parseKatakanaToHiragana } from "./parseGanaCode";
 
 export const search = (photoInts, keyword) => {
-  const keywordRegexp = new RegExp(keyword.toLowerCase());
+  const keywordRegexp = new RegExp(
+    parseKatakanaToHiragana(keyword.toLowerCase())
+  );
   return photoInts.filter(photoInt => {
     return (
       keywordRegexp.exec(photoInt.photo_member.toLowerCase()) !== null || // En
@@ -17,9 +20,11 @@ export const search = (photoInts, keyword) => {
         ).member_name_gana // Gana
       ) !== null ||
       keywordRegexp.exec(
-        photoClass
-          .find(photoCl => photoCl.photo_id === photoInt.photo_costume) //Costume
-          .photo_name.toLowerCase()
+        parseKatakanaToHiragana(
+          photoClass
+            .find(photoCl => photoCl.photo_id === photoInt.photo_costume) //Costume
+            .photo_name.toLowerCase()
+        )
       ) !== null
     );
   });
