@@ -18,3 +18,14 @@
     outline: none;
   }
 }
+
+.search-indicator-container {
+  & h4.search-indicator-txt {
+    display: inline;
+  }
+
+  & button.search-indicator-cancel-btn {
+    font-size: 1em;
+    color: #aaa;
+  }
+}

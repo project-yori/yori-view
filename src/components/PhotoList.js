@@ -7,6 +7,7 @@ import {
 import "@sandstreamdev/react-swipeable-list/dist/styles.css";
 
 import PhotoItem from "./PhotoItem";
+import SearchIndicator from "./SearchIndicator";
 
 import { sort } from "../services/apis/sort";
 import { search } from "../services/apis/search";
