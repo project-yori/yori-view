@@ -36,5 +36,15 @@ footer {
         color: #000;
       }
     }
+
+    & .button-text-container {
+      display: flex;
+      justify-content: center;
+      & svg {
+        margin: auto 0;
+        display: inline-block;
+        font-size: 1em;
+      }
+    }
   }
 }
