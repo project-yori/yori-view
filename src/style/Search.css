@@ -31,13 +31,13 @@
     background-color: transparent;
   }
 }
-.no-search-result-wrapper {
+.no-photo-item-msg-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0;
   height: calc(100vh - 50px - 50px - 50px - 40px);
-  & .no-search-result-txt {
+  & .no-photo-item-msg-txt {
     color: #aaa;
   }
 }

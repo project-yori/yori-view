@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   SwipeableList,
@@ -36,18 +36,16 @@ const mapStateToProps = state => {
   };
 };
 
-class PhotoList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showActionSheet: false,
-      numPhotosSearchIndicator: 0,
-      numTypesSearchIndicator: 0
-    };
-    this.props.getPhotos();
-  }
+const PhotoList = ({
+  getPhotos,
+  editPhotoNumber,
+  photos,
+  sortType,
+  keywordSearch
+}) => {
+  useEffect(() => getPhotos(), []);
 
-  countSameClassPhotoNum = photoInts => {
+  const countSameClassPhotoNum = photoInts => {
     const thisInt = photoInts.pop();
     const photoItem = {
       photoMember: thisInt.photo_member,
@@ -78,33 +76,32 @@ class PhotoList extends Component {
       }
     });
     return restPhotoInts.length !== 0
-      ? [...this.countSameClassPhotoNum(restPhotoInts), photoItem]
+      ? [...countSameClassPhotoNum(restPhotoInts), photoItem]
       : [photoItem];
   };
 
-  renderPhotoList = () => {
+  const [numPhotosSearchResult, setNumPhotosSearchResult] = useState(0);
+  const [numTypesSearchResult, setNumTypesSearchResult] = useState(0);
+
+  const renderPhotoList = () => {
     const photoInts =
-      this.props.keywordSearch === ""
-        ? [...this.props.photos]
-        : search([...this.props.photos], this.props.keywordSearch);
+      keywordSearch === "" ? [...photos] : search([...photos], keywordSearch);
     let photoItems = [];
     if (photoInts.length !== 0) {
-      photoItems = this.countSameClassPhotoNum([...photoInts]);
+      photoItems = countSameClassPhotoNum([...photoInts]);
     }
-    sort(photoItems, this.props.sortType);
+    sort(photoItems, sortType);
 
-    if (
-      this.state.numPhotosSearchIndicator !== photoInts.length ||
-      this.state.numTypesSearchIndicator !== photoItems.length
-    )
-      this.setState({
-        numPhotosSearchIndicator: photoInts.length,
-        numTypesSearchIndicator: photoItems.length
-      });
+    if (numPhotosSearchResult !== photoInts.length)
+      setNumPhotosSearchResult(photoInts.length);
+    if (numTypesSearchResult !== photoItems.length)
+      setNumTypesSearchResult(photoItems.length);
+
+    const noPhotoItemsTxt = keywordSearch === "" ? "" : STRING.NO_SEARCH_RESULT;
 
     return photoItems.length === 0 ? (
-      <div className="no-search-result-wrapper">
-        <h3 className="no-search-result-txt">{STRING.NO_SEARCH_RESULT}</h3>
+      <div className="no-photo-item-msg-wrapper">
+        <h3 className="no-photo-item-msg-txt">{noPhotoItemsTxt}</h3>
       </div>
     ) : (
       photoItems.map((photoItem, i) => {
@@ -132,7 +129,7 @@ class PhotoList extends Component {
                   })
                 );
                 if (confirmDelete === true) {
-                  this.props.editPhotoNumber({
+                  editPhotoNumber({
                     photo_member: photoItem.photoMember,
                     photo_costume: photoItem.photoCostume,
                     photo_type: photoItem.photoType,
@@ -149,18 +146,16 @@ class PhotoList extends Component {
     );
   };
 
-  render() {
-    return (
-      <div className="photo-list-wrapper">
-        <SearchIndicator
-          numPhotosSearchResult={this.state.numPhotosSearchIndicator}
-          numTypesSearchResult={this.state.numTypesSearchIndicator}
-        />
-        <SwipeableList>{this.renderPhotoList()}</SwipeableList>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="photo-list-wrapper">
+      <SearchIndicator
+        numPhotosSearchResult={numPhotosSearchResult}
+        numTypesSearchResult={numTypesSearchResult}
+      />
+      <SwipeableList>{renderPhotoList()}</SwipeableList>
+    </div>
+  );
+};
 
 export default connect(
   mapStateToProps,
