@@ -40,11 +40,10 @@ class PhotoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showActionSheet: false
+      showActionSheet: false,
+      numPhotosSearchIndicator: 0,
+      numTypesSearchIndicator: 0
     };
-  }
-
-  componentDidMount() {
     this.props.getPhotos();
   }
 
@@ -90,10 +89,20 @@ class PhotoList extends Component {
         : search([...this.props.photos], this.props.keywordSearch);
     let photoItems = [];
     if (photoInts.length !== 0) {
-      photoItems = this.countSameClassPhotoNum(photoInts);
+      photoItems = this.countSameClassPhotoNum([...photoInts]);
     }
     sort(photoItems, this.props.sortType);
-    const nodes = photoItems.map((photoItem, i) => {
+
+    if (
+      this.state.numPhotosSearchIndicator !== photoInts.length ||
+      this.state.numTypesSearchIndicator !== photoItems.length
+    )
+      this.setState({
+        numPhotosSearchIndicator: photoInts.length,
+        numTypesSearchIndicator: photoItems.length
+      });
+
+    return photoItems.map((photoItem, i) => {
       return (
         <SwipeableListItem
           key={`photo-item-${i}`}
@@ -132,13 +141,15 @@ class PhotoList extends Component {
         </SwipeableListItem>
       );
     });
-
-    return nodes;
   };
 
   render() {
     return (
       <div className="photo-list-wrapper">
+        <SearchIndicator
+          numPhotosSearchResult={this.state.numPhotosSearchIndicator}
+          numTypesSearchResult={this.state.numTypesSearchIndicator}
+        />
         <SwipeableList>{this.renderPhotoList()}</SwipeableList>
       </div>
     );

@@ -28,6 +28,6 @@ const Search = ({ searchPhoto, keywordSearch }) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Search);

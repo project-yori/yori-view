@@ -20,6 +20,8 @@ const SearchIndicator = ({
   numPhotosSearchResult,
   numTypesSearchResult
 }) => {
+  const searchIndicatorTxt = `"${keywordSearch}" - ${numTypesSearchResult}種類 ${numPhotosSearchResult}枚`;
+
   return (
     <div
       className={
@@ -28,7 +30,7 @@ const SearchIndicator = ({
           : "search-indicator-container hide"
       }
     >
-      <h4 className="search-indicator-txt">{`"${keywordSearch}" - ${numPhotosSearchResult}件`}</h4>
+      <h4 className="search-indicator-txt">{searchIndicatorTxt}</h4>
       <button
         className="search-indicator-cancel-btn"
         onClick={() => searchPhoto("")}
