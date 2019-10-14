@@ -102,45 +102,51 @@ class PhotoList extends Component {
         numTypesSearchIndicator: photoItems.length
       });
 
-    return photoItems.map((photoItem, i) => {
-      return (
-        <SwipeableListItem
-          key={`photo-item-${i}`}
-          swipeLeft={{
-            content: (
-              <div className="photo-item-swipe-del-div">
-                <span></span>
-                <h3>削除</h3>
-              </div>
-            ),
-            action: () => {
-              const confirmDelete = window.confirm(
-                convertString(STRING.DELETE_PHOTO_COMFIRM_DIALOG, {
-                  member: members.keyakizaka.find(
-                    member => member.member_name_en === photoItem.photoMember
-                  ).member_name,
-                  costume: photoClass.find(
-                    photoCl => photoCl.photo_id === photoItem.photoCostume
-                  ).photo_name,
-                  type: type[photoItem.photoType].kanji,
-                  number: photoItem.photoNumber
-                })
-              );
-              if (confirmDelete === true) {
-                this.props.editPhotoNumber({
-                  photo_member: photoItem.photoMember,
-                  photo_costume: photoItem.photoCostume,
-                  photo_type: photoItem.photoType,
-                  photo_number: 0
-                });
+    return photoItems.length === 0 ? (
+      <div className="no-search-result-wrapper">
+        <h3 className="no-search-result-txt">{STRING.NO_SEARCH_RESULT}</h3>
+      </div>
+    ) : (
+      photoItems.map((photoItem, i) => {
+        return (
+          <SwipeableListItem
+            key={`photo-item-${i}`}
+            swipeLeft={{
+              content: (
+                <div className="photo-item-swipe-del-div">
+                  <span></span>
+                  <h3>削除</h3>
+                </div>
+              ),
+              action: () => {
+                const confirmDelete = window.confirm(
+                  convertString(STRING.DELETE_PHOTO_COMFIRM_DIALOG, {
+                    member: members.keyakizaka.find(
+                      member => member.member_name_en === photoItem.photoMember
+                    ).member_name,
+                    costume: photoClass.find(
+                      photoCl => photoCl.photo_id === photoItem.photoCostume
+                    ).photo_name,
+                    type: type[photoItem.photoType].kanji,
+                    number: photoItem.photoNumber
+                  })
+                );
+                if (confirmDelete === true) {
+                  this.props.editPhotoNumber({
+                    photo_member: photoItem.photoMember,
+                    photo_costume: photoItem.photoCostume,
+                    photo_type: photoItem.photoType,
+                    photo_number: 0
+                  });
+                }
               }
-            }
-          }}
-        >
-          <PhotoItem photo={photoItem} />
-        </SwipeableListItem>
-      );
-    });
+            }}
+          >
+            <PhotoItem photo={photoItem} />
+          </SwipeableListItem>
+        );
+      })
+    );
   };
 
   render() {

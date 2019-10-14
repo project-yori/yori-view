@@ -27,5 +27,17 @@
   & button.search-indicator-cancel-btn {
     font-size: 1em;
     color: #aaa;
+    border: none;
+    background-color: transparent;
+  }
+}
+.no-search-result-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  height: calc(100vh - 50px - 50px - 50px - 40px);
+  & .no-search-result-txt {
+    color: #aaa;
   }
 }
