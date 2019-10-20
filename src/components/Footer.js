@@ -1,65 +1,26 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { changeSortType } from "../services/actions";
-import { SORT_TYPES } from "../services/types";
+import React from "react";
 import { Face, CameraFront, AccessTime } from "@material-ui/icons";
 
+import FooterButton from "./FooterButton";
 import "../style/Footer.css";
-import { sort } from "../services/apis/sort";
 
-const mapStateToProps = state => {
-  const { sortType } = state.top;
-  return {
-    sortType
-  };
+const Footer = () => {
+  return (
+    <footer>
+      <FooterButton thisSortType="member">
+        <Face />
+        メンバー順
+      </FooterButton>
+      <FooterButton thisSortType="costume">
+        <CameraFront />
+        テーマ順
+      </FooterButton>
+      <FooterButton thisSortType="createTime">
+        <AccessTime />
+        登録順
+      </FooterButton>
+    </footer>
+  );
 };
 
-const mapDispatchToProps = {
-  changeSortType
-};
-
-class Footer extends Component {
-  handleClickSort = sortType => {
-    const newSortType =
-      sortType === this.props.sortType ? sortType + "Reverse" : sortType;
-    this.props.changeSortType(newSortType);
-  };
-  render() {
-    return (
-      <footer>
-        <div className="button-wrapper">
-          <button
-            className="member"
-            onClick={() => this.handleClickSort("member")}
-          >
-            <Face />
-            メンバー順
-          </button>
-        </div>
-        <div className="button-wrapper">
-          <button
-            className="costume"
-            onClick={() => this.handleClickSort("costume")}
-          >
-            <CameraFront />
-            テーマ順
-          </button>
-        </div>
-        <div className="button-wrapper">
-          <button
-            className="createTime"
-            onClick={() => this.handleClickSort("createTime")}
-          >
-            <AccessTime />
-            登録順
-          </button>
-        </div>
-      </footer>
-    );
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Footer);
+export default Footer;
